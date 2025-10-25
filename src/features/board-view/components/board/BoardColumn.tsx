@@ -14,7 +14,7 @@ type BoardColumnProps = {
 };
 
 export const BoardColumn = ({ status }: BoardColumnProps) => {
-  const { issues } = useBoardState();
+  const { issues, searchValue } = useBoardState();
   const { hasPermissionToDrop } = useHasPermissionToDrop(status);
   const { setNodeRef, active } = useDroppable({
     id: status,
@@ -22,8 +22,20 @@ export const BoardColumn = ({ status }: BoardColumnProps) => {
   });
 
   const filteredIssues = React.useMemo(() => {
-    return issues.filter((issue) => issue.status === status);
-  }, [issues, status]);
+    return issues.filter((issue) => {
+      const isInThisColumn = issue.status === status;
+
+      if (!searchValue) {
+        return isInThisColumn;
+      }
+
+      const titleMatchesSearch = issue.title
+        .toLowerCase()
+        .includes(searchValue.toLowerCase());
+
+      return isInThisColumn && titleMatchesSearch;
+    });
+  }, [issues, status, searchValue]);
 
   const shouldShowPlaceholder = React.useMemo(() => {
     return !!active && active.data.current?.status !== status;

@@ -11,68 +11,52 @@ type LayoutCompoundProps = {
   children: React.ReactNode;
 };
 
-const LayoutSidebar = ({ children }: LayoutCompoundProps) => <>{children}</>;
-LayoutSidebar.displayName = "LayoutSidebar";
+const LayoutLeftSidebar = ({ children }: LayoutCompoundProps) => (
+  <>{children}</>
+);
+LayoutLeftSidebar.displayName = "LayoutLeftSidebar";
 
-const LayoutSearch = ({ children }: LayoutCompoundProps) => <>{children}</>;
-LayoutSearch.displayName = "LayoutSearch";
+const LayoutToolbar = ({ children }: LayoutCompoundProps) => (
+  <div className="board-layout__actions">{children}</div>
+);
+LayoutToolbar.displayName = "LayoutToolbar";
 
-const LayoutFilter = ({ children }: LayoutCompoundProps) => <>{children}</>;
-LayoutFilter.displayName = "LayoutFilter";
-
-const LayoutSort = ({ children }: LayoutCompoundProps) => <>{children}</>;
-LayoutSort.displayName = "LayoutSort";
-
-const LayoutBoardBody = ({ children }: LayoutCompoundProps) => <>{children}</>;
-LayoutBoardBody.displayName = "LayoutBoardBody";
+const LayoutMain = ({ children }: LayoutCompoundProps) => <>{children}</>;
+LayoutMain.displayName = "LayoutMain";
 
 export const Layout = ({ children, title = "Project Name" }: LayoutProps) => {
   // Extracting compound children
-  const Sidebar = React.Children.toArray(children).filter(
+  const LeftSidebar = React.Children.toArray(children).filter(
     (child: any) =>
       child.type &&
-      (child.type.displayName || child.type.name) === "LayoutSidebar"
+      (child.type.displayName || child.type.name) === "LayoutLeftSidebar"
   );
-  const Search = React.Children.toArray(children).filter(
+  const Toolbar = React.Children.toArray(children).filter(
     (child: any) =>
       child.type &&
-      (child.type.displayName || child.type.name) === "LayoutSearch"
+      (child.type.displayName || child.type.name) === "LayoutToolbar"
   );
-  const Filter = React.Children.toArray(children).filter(
+  const Main = React.Children.toArray(children).filter(
     (child: any) =>
-      child.type &&
-      (child.type.displayName || child.type.name) === "LayoutFilter"
-  );
-  const Sort = React.Children.toArray(children).filter(
-    (child: any) =>
-      child.type && (child.type.displayName || child.type.name) === "LayoutSort"
-  );
-  const BoardBody = React.Children.toArray(children).filter(
-    (child: any) =>
-      child.type &&
-      (child.type.displayName || child.type.name) === "LayoutBoardBody"
+      child.type && (child.type.displayName || child.type.name) === "LayoutMain"
   );
 
   return (
     <div className="board-layout">
-      {Sidebar}
+      {LeftSidebar}
       <div className="board-layout__content">
         <div className="board-layout__title">
-          <Text variant="h1" className="board-layout__title-text">{title}</Text>
+          <Text variant="h1" className="board-layout__title-text">
+            {title}
+          </Text>
         </div>
-        <div className="board-layout__actions">
-          <div>{Search}</div>
-          <div>{Filter}</div>
-          <div>{Sort}</div>
-        </div>
-        <div className="board-layout__body">{BoardBody}</div>
+        {Toolbar}
+        <div className="board-layout__body">{Main}</div>
       </div>
     </div>
   );
 };
 
-Layout.Sidebar = LayoutSidebar;
-Layout.Search = LayoutSearch;
-Layout.Filter = LayoutFilter;
-Layout.Sort = LayoutSort;
-Layout.BoardBody = LayoutBoardBody;
+Layout.LeftSidebar = LayoutLeftSidebar;
+Layout.Toolbar = LayoutToolbar;
+Layout.Main = LayoutMain;

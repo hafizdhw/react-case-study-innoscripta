@@ -3,27 +3,24 @@ import { Layout } from "../features/board-view/components/base-layout/BaseLayout
 import { BoardProvider } from "../features/board-view/context/BoardContext";
 import { Board } from "../features/board-view/components/board/Board";
 import { IssueLoader } from "../features/board-view/loader/IssueLoader";
+import { SearchBar } from "../features/board-view/components/search-bar/SearchBar";
 
 export const BoardPage = () => {
   return (
     <BoardProvider>
       <IssueLoader />
       <Layout>
-        <Layout.Sidebar>
+        <Layout.LeftSidebar>
           <div>Sidebar</div>
-        </Layout.Sidebar>
-        <Layout.Search>
-          <div>Search</div>
-        </Layout.Search>
-        <Layout.Filter>
+        </Layout.LeftSidebar>
+        <Layout.Toolbar>
+          <SearchBar />
           <div>Filter</div>
-        </Layout.Filter>
-        <Layout.Sort>
           <div>Sort</div>
-        </Layout.Sort>
-        <Layout.BoardBody>
+        </Layout.Toolbar>
+        <Layout.Main>
           <Board />
-        </Layout.BoardBody>
+        </Layout.Main>
       </Layout>
     </BoardProvider>
   );

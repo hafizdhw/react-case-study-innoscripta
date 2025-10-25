@@ -12,6 +12,7 @@ export enum BoardActionType {
   UPDATE_ISSUE = "UPDATE_ISSUE",
   UNDO_ISSUE = "UNDO_ISSUE",
   REMOVE_LAST_UPDATED_ISSUE = "REMOVE_LAST_UPDATED_ISSUE",
+  FILTER_ISSUES = "FILTER_ISSUES",
 }
 
 interface BoardState {
@@ -20,17 +21,22 @@ interface BoardState {
     originalIndex: number;
     originalIssue: Issue;
   }[];
+  searchValue?: string;
 }
 
 type BoardAction =
-  | { type: BoardActionType.LOAD_ISSUES; payload: Issue[] }
+  | {
+      type: BoardActionType.LOAD_ISSUES;
+      payload: Issue[];
+    }
   | {
       type: BoardActionType.UPDATE_ISSUE;
       issueId: Issue["id"];
       newStatus: IssueStatus;
     }
   | { type: BoardActionType.UNDO_ISSUE; issueId: Issue["id"] }
-  | { type: BoardActionType.REMOVE_LAST_UPDATED_ISSUE; issueId: Issue["id"] };
+  | { type: BoardActionType.REMOVE_LAST_UPDATED_ISSUE; issueId: Issue["id"] }
+  | { type: BoardActionType.FILTER_ISSUES; searchValue: string };
 
 const BoardStateContext = createContext<BoardState | undefined>(undefined);
 const BoardDispatchContext = createContext<Dispatch<BoardAction> | undefined>(
@@ -41,9 +47,17 @@ function boardReducer(state: BoardState, action: BoardAction): BoardState {
   switch (action.type) {
     case BoardActionType.LOAD_ISSUES:
       return { ...state, issues: action.payload };
+    case BoardActionType.FILTER_ISSUES:
+      const { searchValue } = action;
+      return {
+        ...state,
+        searchValue,
+      };
     case BoardActionType.UPDATE_ISSUE:
       const { issueId, newStatus } = action;
-      const originalIndex = state.issues.findIndex((issue) => issue.id === issueId);
+      const originalIndex = state.issues.findIndex(
+        (issue) => issue.id === issueId
+      );
       const newIssues = [...state.issues];
       const updatedIssue = newIssues.find((issue) => issue.id === issueId);
       if (updatedIssue) {
