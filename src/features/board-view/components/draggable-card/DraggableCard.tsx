@@ -24,10 +24,7 @@ export const DraggableCard = ({
       ref={setNodeRef}
       {...attributes}
       {...listeners}
-      style={{
-        cursor: "grab",
-        userSelect: "none",
-      }}
+      className="draggable-card"
     >
       <Card
         title={title}
