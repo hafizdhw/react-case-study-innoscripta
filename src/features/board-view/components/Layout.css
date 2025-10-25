@@ -1,0 +1,50 @@
+
+/** Styles scoped only to defined className from Layout.tsx **/
+
+.board-container {
+  display: flex;
+  flex-direction: row;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.board-content {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: 2.5rem 2.5rem 2.5rem 2rem;
+}
+
+.board-title {
+  display: flex;
+  align-items: center;
+}
+
+.board-title h1 {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.board-actions {
+  display: flex;
+  align-items: flex-end;
+  gap: 1rem;
+  margin-bottom: 1.2rem;
+  flex-wrap: wrap;
+}
+
+.board-actions > div {
+  min-width: 180px;
+  flex: 1 1 0;
+  display: flex;
+  align-items: center;
+}
+
+.board-body {
+  display: flex;
+  gap: 1.2rem;
+  overflow-x: auto;
+  min-height: 60vh;
+  padding-bottom: 0.5rem;
+}
