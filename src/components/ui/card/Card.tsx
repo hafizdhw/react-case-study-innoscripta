@@ -1,7 +1,7 @@
 import React from "react";
-import { Text } from "./Text";
+import { Text } from "../text/Text";
 import "./Card.css";
-import { Badge } from "./Badge";
+import { Badge } from "../badge/Badge";
 
 export type CardProps = {
   title: string;

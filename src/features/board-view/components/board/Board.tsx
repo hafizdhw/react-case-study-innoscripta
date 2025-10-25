@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { DndContext, DragEndEvent } from "@dnd-kit/core";
 
-import { DraggableCard } from "./DraggableCard";
+import { DraggableCard } from "../draggable-card/DraggableCard";
 
 const initialIssues = [
   { id: "1", title: "Issue 1", status: "backlog" },

@@ -1,12 +1,11 @@
 .badge {
-    background: #eee;
-    color: #222;
-    font-weight: 600;
-    font-size: 11.5px;
-    padding: 2.5px 10px;
-    border-radius: 12px;
-    letter-spacing: 0.2px;
-    margin-right: 4px;
+    background: var(--color-surface);
+    color: var(--color-text);
+    font-weight: var(--font-weight-semibold);
+    font-size: var(--font-size-xs);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--radius-full);
+    margin-right: var(--spacing-xs);
 }
 
 .badge--primary {

@@ -1,5 +1,5 @@
 import { useDraggable } from "@dnd-kit/core";
-import { Card, CardProps } from "../../../components/ui/Card";
+import { Card, CardProps } from "../../../../components/ui/card/Card";
 
 type DraggableCardProps = CardProps & {
   id: string;

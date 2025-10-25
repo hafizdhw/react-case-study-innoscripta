@@ -1,7 +1,7 @@
 import React from "react";
-import { Layout } from "../features/board-view/components/BaseLayout";
+import { Layout } from "../features/board-view/components/base-layout/BaseLayout";
 import { BoardProvider } from "../features/board-view/context/BoardContext";
-import { Board } from "../features/board-view/components/Board";
+import { Board } from "../features/board-view/components/board/Board";
 
 export const BoardPage = () => {
   return (
