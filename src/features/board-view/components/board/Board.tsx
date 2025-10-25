@@ -3,12 +3,9 @@ import { DndContext, DragEndEvent } from "@dnd-kit/core";
 import "./Board.css";
 
 import { IssueStatusEnum } from "../../models/BoardView.model";
-import { useBoardState } from "../../context/BoardContext";
 import { BoardColumn } from "./BoardColumn";
 
 export const Board = () => {
-  const { issues } = useBoardState();
-
   function handleDragStart(event: any) {
     // TODO: Implement drag start logic
   }

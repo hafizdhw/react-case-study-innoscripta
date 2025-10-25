@@ -1,0 +1,20 @@
+.placeholder-card {
+    height: 6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-surface);
+    border: 1.5px dashed var(--color-primary);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+}
+
+.placeholder-card--primary {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+}
+
+.placeholder-card--danger {
+    border-color: var(--color-danger);
+    color: var(--color-danger);
+}

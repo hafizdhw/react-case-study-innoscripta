@@ -17,16 +17,32 @@ export const DraggableCard = ({
   assignee,
   tags,
 }: DraggableCardProps) => {
-  const { attributes, listeners, setNodeRef, isDragging } = useDraggable({
-    id,
-  });
+  const { attributes, listeners, setNodeRef, transform, isDragging, active } =
+    useDraggable({
+      id,
+      data: {
+        status,
+      },
+    });
+
+  const style = transform
+    ? {
+        transform: `translate3d(${transform.x}px, ${transform.y}px, 0)`,
+      }
+    : undefined;
+
+  const isOtherCardDragging = !!active && active?.id !== id;
 
   return (
     <div
       ref={setNodeRef}
       {...attributes}
       {...listeners}
-      className="draggable-card"
+      style={style}
+      className={`draggable-card ${
+        isDragging ? "draggable-card--dragging" : ""
+      } 
+      ${isOtherCardDragging ? "draggable-card--inactive" : ""}`}
     >
       <Card
         title={title}
