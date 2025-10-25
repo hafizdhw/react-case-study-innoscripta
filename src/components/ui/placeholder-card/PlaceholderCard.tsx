@@ -13,7 +13,9 @@ export const PlaceholderCard = ({ title, variant }: PlaceholderCardProps) => {
   }, [variant]);
 
   return (
-    <div className={`placeholder-card ${variantClass}`}>
+    <div
+      className={`placeholder-card ${variantClass}`}
+    >
       <Text variant="body">{title}</Text>
     </div>
   );
