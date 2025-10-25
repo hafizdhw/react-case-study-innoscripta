@@ -54,18 +54,18 @@ export const Layout = ({ children, title = "Project Name" }: LayoutProps) => {
   );
 
   return (
-    <div className="board-container">
+    <div className="board-layout">
       {Sidebar}
-      <div className="board-content">
-        <div className="board-title">
-          <Text variant="h1" className="board-title-text">{title}</Text>
+      <div className="board-layout__content">
+        <div className="board-layout__title">
+          <Text variant="h1" className="board-layout__title-text">{title}</Text>
         </div>
-        <div className="board-actions">
+        <div className="board-layout__actions">
           <div>{Search}</div>
           <div>{Filter}</div>
           <div>{Sort}</div>
         </div>
-        <div className="board-body">{BoardBody}</div>
+        <div className="board-layout__body">{BoardBody}</div>
       </div>
     </div>
   );

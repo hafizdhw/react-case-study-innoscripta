@@ -1,31 +1,30 @@
 /** Styles scoped only to defined className from Layout.tsx **/
 
-.board-container {
+.board-layout {
   display: flex;
   flex-direction: row;
   min-height: 100vh;
   width: 100%;
-  background-color: var(--color-background);
 }
 
-.board-content {
+.board-layout__content {
   display: flex;
   flex-direction: column;
-  min-width: 0;
+  width: 100%;
   padding: var(--spacing-lg);
 }
 
-.board-title {
+.board-layout__title {
   display: flex;
   align-items: center;
   margin-bottom: var(--spacing-lg);
 }
 
-.board-title-text {
-  color: var(--color-danger);
+.board-layout__title-text {
+  color: var(--color-text);
 }
 
-.board-actions {
+.board-layout__actions {
   display: flex;
   align-items: flex-end;
   gap: var(--spacing-md);
@@ -33,14 +32,7 @@
   flex-wrap: wrap;
 }
 
-.board-actions>div {
-  min-width: 180px;
-  flex: 1 1 0;
-  display: flex;
-  align-items: center;
-}
-
-.board-body {
+.board-layout__body {
   display: flex;
   gap: var(--spacing-lg);
   overflow-x: auto;
