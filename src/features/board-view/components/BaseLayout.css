@@ -1,4 +1,3 @@
-
 /** Styles scoped only to defined className from Layout.tsx **/
 
 .board-container {
@@ -6,35 +5,35 @@
   flex-direction: row;
   min-height: 100vh;
   width: 100%;
+  background-color: var(--color-background);
 }
 
 .board-content {
-  flex: 1 1 0;
   display: flex;
   flex-direction: column;
   min-width: 0;
-  padding: 2.5rem 2.5rem 2.5rem 2rem;
+  padding: var(--spacing-lg);
 }
 
 .board-title {
   display: flex;
   align-items: center;
+  margin-bottom: var(--spacing-lg);
 }
 
-.board-title h1 {
-  font-size: 2rem;
-  font-weight: 700;
+.board-title-text {
+  color: var(--color-danger);
 }
 
 .board-actions {
   display: flex;
   align-items: flex-end;
-  gap: 1rem;
-  margin-bottom: 1.2rem;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-xl);
   flex-wrap: wrap;
 }
 
-.board-actions > div {
+.board-actions>div {
   min-width: 180px;
   flex: 1 1 0;
   display: flex;
@@ -43,8 +42,8 @@
 
 .board-body {
   display: flex;
-  gap: 1.2rem;
+  gap: var(--spacing-lg);
   overflow-x: auto;
   min-height: 60vh;
-  padding-bottom: 0.5rem;
+  padding-bottom: var(--spacing-sm);
 }

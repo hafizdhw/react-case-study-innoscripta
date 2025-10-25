@@ -1,5 +1,6 @@
 import React from "react";
-import "./Layout.css";
+import "./BaseLayout.css";
+import { Text } from "../../../components/ui/Text";
 
 type LayoutProps = {
   children: React.ReactNode;
@@ -57,7 +58,7 @@ export const Layout = ({ children, title = "Project Name" }: LayoutProps) => {
       {Sidebar}
       <div className="board-content">
         <div className="board-title">
-          <h1>{title}</h1>
+          <Text variant="h1" className="board-title-text">{title}</Text>
         </div>
         <div className="board-actions">
           <div>{Search}</div>

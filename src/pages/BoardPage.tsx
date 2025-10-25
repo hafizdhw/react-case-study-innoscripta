@@ -1,5 +1,5 @@
 import React from "react";
-import { Layout } from "../features/board-view/components/Layout";
+import { Layout } from "../features/board-view/components/BaseLayout";
 
 export const BoardPage = () => {
   return (
