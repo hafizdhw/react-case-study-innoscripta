@@ -2,16 +2,18 @@ import React from "react";
 import { Text } from "../text/Text";
 import "./Card.css";
 import { Badge } from "../badge/Badge";
+import { Issue } from "../../../features/board-view/models/BoardView.model";
 
-export type CardProps = {
-  title: string;
-  status: string;
-  priority: string;
-  severity: number;
-  createdAt: string;
-  assignee: string;
-  tags: string[];
-};
+export type CardProps = Pick<
+  Issue,
+  | "title"
+  | "status"
+  | "priority"
+  | "severity"
+  | "createdAt"
+  | "assignee"
+  | "tags"
+>;
 
 export const Card = ({
   title,

@@ -1,0 +1,7 @@
+.board {
+    display: flex;
+    gap: 20px;
+    padding: 24px;
+    background: #f6f8fa;
+    height: 80vh;
+}
