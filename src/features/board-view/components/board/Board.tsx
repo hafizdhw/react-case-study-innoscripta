@@ -1,14 +1,31 @@
 import React from "react";
-import { DndContext, DragEndEvent } from "@dnd-kit/core";
+import {
+  DndContext,
+  DragEndEvent,
+  MouseSensor,
+  useSensor,
+  useSensors,
+} from "@dnd-kit/core";
 import "./Board.css";
 
 import { IssueStatus, IssueStatusEnum } from "../../models/BoardView.model";
 import { BoardColumn } from "./BoardColumn";
-import { IssuesActionType, useIssuesDispatch } from "../../context/IssuesContext";
+import {
+  IssuesActionType,
+  useIssuesDispatch,
+} from "../../context/IssuesContext";
 import { mockUpdateIssue } from "../../../../utils/api";
 
 export const Board = () => {
   const dispatch = useIssuesDispatch();
+
+  const mouseSensor = useSensor(MouseSensor, {
+    activationConstraint: {
+      distance: 5,
+    },
+  });
+
+  const sensors = useSensors(mouseSensor);
 
   async function handleDragEnd(event: DragEndEvent) {
     const targetStatus = event.over?.id;
@@ -41,7 +58,7 @@ export const Board = () => {
   }
 
   return (
-    <DndContext onDragEnd={handleDragEnd}>
+    <DndContext onDragEnd={handleDragEnd} sensors={sensors}>
       <div className="board">
         {Object.values(IssueStatusEnum).map((status, idx) => (
           <BoardColumn key={`${status}-${idx}`} status={status} />

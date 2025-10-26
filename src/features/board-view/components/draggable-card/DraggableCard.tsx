@@ -6,6 +6,7 @@ import { memo } from "react";
 
 type DraggableCardProps = CardProps & {
   id: string;
+  onClick?: () => void;
 };
 
 const DraggableCard = ({
@@ -17,6 +18,7 @@ const DraggableCard = ({
   createdAt,
   assignee,
   tags,
+  onClick,
 }: DraggableCardProps) => {
   const { attributes, listeners, setNodeRef, transform, isDragging, active } =
     useDraggable({
@@ -44,6 +46,7 @@ const DraggableCard = ({
         isDragging ? "draggable-card--dragging" : ""
       } 
       ${isOtherCardDragging ? "draggable-card--inactive" : ""}`}
+      onClick={onClick}
     >
       <Card
         title={title}

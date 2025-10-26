@@ -9,12 +9,14 @@ import "./BoardColumn.css";
 import { useDroppable } from "@dnd-kit/core";
 import { useGetFilteredIssues } from "../../hooks/useGetFilteredIssues";
 import { useGetSortedIssues } from "../../hooks/useGetSortedIssues";
+import { useNavigate } from "react-router-dom";
 
 type BoardColumnProps = {
   status: IssueStatus;
 };
 
 export const BoardColumn = ({ status }: BoardColumnProps) => {
+  const navigate = useNavigate();
   const { hasPermissionToDrop } = useHasPermissionToDrop(status);
   const { setNodeRef, active, isOver } = useDroppable({
     id: status,
@@ -45,6 +47,9 @@ export const BoardColumn = ({ status }: BoardColumnProps) => {
       <div className="board-column__cards">
         {sortedIssues.map((issue) => (
           <DraggableCard
+            onClick={() => {
+              navigate(`/issue/${issue.id}`);
+            }}
             key={issue.id}
             id={issue.id}
             title={issue.title}

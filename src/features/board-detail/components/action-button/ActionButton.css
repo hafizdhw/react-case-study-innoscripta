@@ -1,0 +1,15 @@
+.action-button {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+}
+
+.action-button__section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
