@@ -15,10 +15,13 @@ import {
   useIssuesDispatch,
 } from "../../context/IssuesContext";
 import { mockUpdateIssue } from "../../../../utils/api";
+import { useToast } from "../../../../components/ui/toaster/useToast";
+
+const UNDO_DURATION = 5000;
 
 export const Board = () => {
   const dispatch = useIssuesDispatch();
-
+  const toast = useToast();
   const mouseSensor = useSensor(MouseSensor, {
     activationConstraint: {
       distance: 5,
@@ -38,21 +41,34 @@ export const Board = () => {
           issueId: String(activeIssueId),
           newStatus: targetStatus as IssueStatus,
         });
-        try {
-          await mockUpdateIssue(String(activeIssueId), {
-            status: targetStatus as IssueStatus,
-          });
-        } catch (error) {
-          dispatch({
-            type: IssuesActionType.UNDO_ISSUE,
-            issueId: String(activeIssueId),
-          });
-        } finally {
-          dispatch({
-            type: IssuesActionType.REMOVE_LAST_UPDATED_ISSUE,
-            issueId: String(activeIssueId),
-          });
-        }
+        const proceedUpdate = async () => {
+          try {
+            await mockUpdateIssue(String(activeIssueId), {
+              status: targetStatus as IssueStatus,
+            });
+          } catch (error) {
+            dispatch({
+              type: IssuesActionType.UNDO_ISSUE,
+              issueId: String(activeIssueId),
+            });
+          }
+        };
+        const timeout = setTimeout(() => proceedUpdate(), UNDO_DURATION);
+        toast.show({
+          message: "Issue updated",
+          type: "success",
+          duration: UNDO_DURATION,
+          action: {
+            text: "Undo",
+            onClick: () => {
+              dispatch({
+                type: IssuesActionType.UNDO_ISSUE,
+                issueId: String(activeIssueId),
+              });
+              clearTimeout(timeout);
+            },
+          },
+        });
       }
     }
   }

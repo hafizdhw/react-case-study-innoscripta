@@ -1,14 +1,20 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { BoardPage } from './pages/BoardPage';
-import { IssueDetailPage } from './pages/IssueDetailPage';
-import { SettingsPage } from './pages/SettingsPage';
-import { Navigation } from './components/layout/navigation/Navigation';
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
+import { BoardPage } from "./pages/BoardPage";
+import { IssueDetailPage } from "./pages/IssueDetailPage";
+import { SettingsPage } from "./pages/SettingsPage";
+import { Navigation } from "./components/layout/navigation/Navigation";
+import { ToastProvider } from "./components/ui/toaster/ToastContext";
 
 export const App = () => {
-
   return (
-      <Router>
+    <Router>
+      <ToastProvider>
         <Navigation />
         <Routes>
           <Route path="/board" element={<BoardPage />} />
@@ -16,6 +22,7 @@ export const App = () => {
           <Route path="/settings" element={<SettingsPage />} />
           <Route path="*" element={<Navigate to="/board" />} />
         </Routes>
-      </Router>
+      </ToastProvider>
+    </Router>
   );
-}
+};

@@ -6,6 +6,9 @@ import { Filters } from "../features/board-view/components/filters/Filters";
 import { IssuesProvider } from "../features/board-view/context/IssuesContext";
 import { FiltersProvider } from "../features/board-view/context/FiltersContext";
 import { IssuesHistory } from "../features/board-view/components/issues-history/IssuesHistory";
+import {
+  ToastRenderer,
+} from "../components/ui/toaster/ToastRenderer";
 
 export const BoardPage = () => {
   return (
@@ -23,6 +26,7 @@ export const BoardPage = () => {
             <Board />
           </Layout.Main>
         </Layout>
+        <ToastRenderer />
       </FiltersProvider>
     </IssuesProvider>
   );
