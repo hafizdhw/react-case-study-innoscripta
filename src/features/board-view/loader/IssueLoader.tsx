@@ -1,12 +1,12 @@
 import { useEffect } from "react";
 import { mockFetchIssues } from "../../../utils/api";
-import { BoardActionType, useBoardDispatch } from "../context/BoardContext";
+import { IssuesActionType, useIssuesDispatch } from "../context/IssuesContext";
 
 export const IssueLoader = () => {
-  const dispatch = useBoardDispatch();
+  const dispatch = useIssuesDispatch();
   useEffect(() => {
     mockFetchIssues().then((issues) => {
-      dispatch({ type: BoardActionType.LOAD_ISSUES, payload: issues });
+      dispatch({ type: IssuesActionType.LOAD_ISSUES, payload: issues });
     });
   }, [dispatch]);
   return null;

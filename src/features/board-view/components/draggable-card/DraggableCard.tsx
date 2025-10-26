@@ -2,12 +2,13 @@ import { useDraggable } from "@dnd-kit/core";
 import { Card, CardProps } from "../../../../components/ui/card/Card";
 
 import "./DraggableCard.css";
+import { memo } from "react";
 
 type DraggableCardProps = CardProps & {
   id: string;
 };
 
-export const DraggableCard = ({
+const DraggableCard = ({
   id,
   title,
   status,
@@ -56,3 +57,5 @@ export const DraggableCard = ({
     </div>
   );
 };
+
+export default memo(DraggableCard);

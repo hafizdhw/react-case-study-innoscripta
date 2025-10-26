@@ -7,53 +7,45 @@ import React, {
 } from "react";
 import { Issue, IssueStatus } from "../models/BoardView.model";
 
-export enum BoardActionType {
+export enum IssuesActionType {
   LOAD_ISSUES = "LOAD_ISSUES",
   UPDATE_ISSUE = "UPDATE_ISSUE",
   UNDO_ISSUE = "UNDO_ISSUE",
   REMOVE_LAST_UPDATED_ISSUE = "REMOVE_LAST_UPDATED_ISSUE",
-  FILTER_ISSUES = "FILTER_ISSUES",
 }
 
-interface BoardState {
+interface IssuesState {
   issues: Issue[];
   lastUpdatedIssues: {
     originalIndex: number;
     originalIssue: Issue;
   }[];
-  searchValue?: string;
 }
 
-type BoardAction =
+type IssuesAction =
   | {
-      type: BoardActionType.LOAD_ISSUES;
+      type: IssuesActionType.LOAD_ISSUES;
       payload: Issue[];
     }
   | {
-      type: BoardActionType.UPDATE_ISSUE;
+      type: IssuesActionType.UPDATE_ISSUE;
       issueId: Issue["id"];
       newStatus: IssueStatus;
     }
-  | { type: BoardActionType.UNDO_ISSUE; issueId: Issue["id"] }
-  | { type: BoardActionType.REMOVE_LAST_UPDATED_ISSUE; issueId: Issue["id"] }
-  | { type: BoardActionType.FILTER_ISSUES; searchValue: string };
+  | { type: IssuesActionType.UNDO_ISSUE; issueId: Issue["id"] }
+  | { type: IssuesActionType.REMOVE_LAST_UPDATED_ISSUE; issueId: Issue["id"] };
 
-const BoardStateContext = createContext<BoardState | undefined>(undefined);
-const BoardDispatchContext = createContext<Dispatch<BoardAction> | undefined>(
+const IssuesStateContext = createContext<IssuesState | undefined>(undefined);
+const IssuesDispatchContext = createContext<Dispatch<IssuesAction> | undefined>(
   undefined
 );
 
-function boardReducer(state: BoardState, action: BoardAction): BoardState {
+function issuesReducer(state: IssuesState, action: IssuesAction): IssuesState {
   switch (action.type) {
-    case BoardActionType.LOAD_ISSUES:
+    case IssuesActionType.LOAD_ISSUES:
       return { ...state, issues: action.payload };
-    case BoardActionType.FILTER_ISSUES:
-      const { searchValue } = action;
-      return {
-        ...state,
-        searchValue,
-      };
-    case BoardActionType.UPDATE_ISSUE:
+    
+    case IssuesActionType.UPDATE_ISSUE:
       const { issueId, newStatus } = action;
       const originalIndex = state.issues.findIndex(
         (issue) => issue.id === issueId
@@ -75,7 +67,8 @@ function boardReducer(state: BoardState, action: BoardAction): BoardState {
         };
       }
       return state;
-    case BoardActionType.REMOVE_LAST_UPDATED_ISSUE:
+    
+    case IssuesActionType.REMOVE_LAST_UPDATED_ISSUE:
       const { issueId: tempIssueId } = action;
       const newLastUpdatedIssues = state.lastUpdatedIssues.filter(
         (item) => item.originalIssue.id !== tempIssueId
@@ -84,7 +77,8 @@ function boardReducer(state: BoardState, action: BoardAction): BoardState {
         ...state,
         lastUpdatedIssues: newLastUpdatedIssues,
       };
-    case BoardActionType.UNDO_ISSUE:
+    
+    case IssuesActionType.UNDO_ISSUE:
       const { issueId: undoIssueId } = action;
       const tempIssue = state.lastUpdatedIssues.find(
         (item) => item.originalIssue.id === undoIssueId
@@ -109,37 +103,38 @@ function boardReducer(state: BoardState, action: BoardAction): BoardState {
         ...state,
         issues: newUndoneIssues,
       };
+    
     default:
       return state;
   }
 }
 
-export const BoardProvider = ({ children }: { children: ReactNode }) => {
-  const [state, dispatch] = useReducer(boardReducer, {
+export const IssuesProvider = ({ children }: { children: ReactNode }) => {
+  const [state, dispatch] = useReducer(issuesReducer, {
     issues: [],
     lastUpdatedIssues: [],
   });
   return (
-    <BoardStateContext.Provider value={state}>
-      <BoardDispatchContext.Provider value={dispatch}>
+    <IssuesStateContext.Provider value={state}>
+      <IssuesDispatchContext.Provider value={dispatch}>
         {children}
-      </BoardDispatchContext.Provider>
-    </BoardStateContext.Provider>
+      </IssuesDispatchContext.Provider>
+    </IssuesStateContext.Provider>
   );
 };
 
-export function useBoardState() {
-  const context = useContext(BoardStateContext);
+export function useIssuesState() {
+  const context = useContext(IssuesStateContext);
   if (context === undefined) {
-    throw new Error("useBoardState must be used within a BoardProvider");
+    throw new Error("useIssuesState must be used within an IssuesProvider");
   }
   return context;
 }
 
-export function useBoardDispatch() {
-  const context = useContext(BoardDispatchContext);
+export function useIssuesDispatch() {
+  const context = useContext(IssuesDispatchContext);
   if (context === undefined) {
-    throw new Error("useBoardDispatch must be used within a BoardProvider");
+    throw new Error("useIssuesDispatch must be used within an IssuesProvider");
   }
   return context;
 }

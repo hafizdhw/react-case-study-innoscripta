@@ -1,10 +1,11 @@
 import React from "react";
 import { PlaceholderCard } from "../../../../components/ui/placeholder-card/PlaceholderCard";
 import { Text } from "../../../../components/ui/text/Text";
-import { useBoardState } from "../../context/BoardContext";
+import { useIssuesState } from "../../context/IssuesContext";
+import { useFiltersState } from "../../context/FiltersContext";
 import { useHasPermissionToDrop } from "../../hooks/useHasPermissionToDrop";
 import { IssuePriority, IssueStatus } from "../../models/BoardView.model";
-import { DraggableCard } from "../draggable-card/DraggableCard";
+import DraggableCard from "../draggable-card/DraggableCard";
 
 import "./BoardColumn.css";
 import { useDroppable } from "@dnd-kit/core";
@@ -14,7 +15,8 @@ type BoardColumnProps = {
 };
 
 export const BoardColumn = ({ status }: BoardColumnProps) => {
-  const { issues, searchValue } = useBoardState();
+  const { issues } = useIssuesState();
+  const { searchValue } = useFiltersState();
   const { hasPermissionToDrop } = useHasPermissionToDrop(status);
   const { setNodeRef, active, isOver } = useDroppable({
     id: status,

@@ -4,11 +4,11 @@ import "./Board.css";
 
 import { IssueStatus, IssueStatusEnum } from "../../models/BoardView.model";
 import { BoardColumn } from "./BoardColumn";
-import { BoardActionType, useBoardDispatch } from "../../context/BoardContext";
+import { IssuesActionType, useIssuesDispatch } from "../../context/IssuesContext";
 import { mockUpdateIssue } from "../../../../utils/api";
 
 export const Board = () => {
-  const dispatch = useBoardDispatch();
+  const dispatch = useIssuesDispatch();
 
   async function handleDragEnd(event: DragEndEvent) {
     const targetStatus = event.over?.id;
@@ -17,7 +17,7 @@ export const Board = () => {
       const activeIssue = event.active.data.current;
       if (activeIssue) {
         dispatch({
-          type: BoardActionType.UPDATE_ISSUE,
+          type: IssuesActionType.UPDATE_ISSUE,
           issueId: String(activeIssueId),
           newStatus: targetStatus as IssueStatus,
         });
@@ -27,12 +27,12 @@ export const Board = () => {
           });
         } catch (error) {
           dispatch({
-            type: BoardActionType.UNDO_ISSUE,
+            type: IssuesActionType.UNDO_ISSUE,
             issueId: String(activeIssueId),
           });
         } finally {
           dispatch({
-            type: BoardActionType.REMOVE_LAST_UPDATED_ISSUE,
+            type: IssuesActionType.REMOVE_LAST_UPDATED_ISSUE,
             issueId: String(activeIssueId),
           });
         }

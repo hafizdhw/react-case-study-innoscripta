@@ -1,14 +1,14 @@
 import { TextInput } from "../../../../components/ui/text-input/TextInput";
 import { useState } from "react";
 import { useDebounce } from "../../../../hooks/useDebounce";
-import { BoardActionType, useBoardDispatch } from "../../context/BoardContext";
+import { FiltersActionType, useFiltersDispatch } from "../../context/FiltersContext";
 
 export const SearchBar = () => {
   const [value, setValue] = useState("");
-  const dispatch = useBoardDispatch();
+  const dispatch = useFiltersDispatch();
   useDebounce(value, 500, (newValue) => {
     dispatch({
-      type: BoardActionType.FILTER_ISSUES,
+      type: FiltersActionType.UPDATE_FILTERS,
       searchValue: newValue,
     });
   });
