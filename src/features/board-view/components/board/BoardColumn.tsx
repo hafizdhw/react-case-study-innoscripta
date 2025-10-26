@@ -16,7 +16,7 @@ type BoardColumnProps = {
 export const BoardColumn = ({ status }: BoardColumnProps) => {
   const { issues, searchValue } = useBoardState();
   const { hasPermissionToDrop } = useHasPermissionToDrop(status);
-  const { setNodeRef, active } = useDroppable({
+  const { setNodeRef, active, isOver } = useDroppable({
     id: status,
     disabled: !hasPermissionToDrop,
   });
@@ -67,6 +67,7 @@ export const BoardColumn = ({ status }: BoardColumnProps) => {
           <PlaceholderCard
             title={hasPermissionToDrop ? status : "Not allowed"}
             variant={hasPermissionToDrop ? "primary" : "danger"}
+            isActive={isOver}
           />
         )}
       </div>
