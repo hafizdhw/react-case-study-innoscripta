@@ -3,7 +3,10 @@ import { Select } from "../../../../components/ui/select/Select";
 import { Text } from "../../../../components/ui/text/Text";
 import { useGetFiltersOptions } from "../../hooks/useGetFIltersOptions";
 import { useDebounce } from "../../../../hooks/useDebounce";
-import { FiltersActionType, useFiltersDispatch } from "../../context/FiltersContext";
+import {
+  FiltersActionType,
+  useFiltersDispatch,
+} from "../../context/FiltersContext";
 
 export const Filters = () => {
   const { assigneeOptions, severityOptions } = useGetFiltersOptions();
@@ -35,6 +38,7 @@ export const Filters = () => {
           options={assigneeOptions}
           value={assignee}
           onChange={setAssignee}
+          placeholder="Select an assignee"
         />
       </div>
 
@@ -44,6 +48,7 @@ export const Filters = () => {
           options={severityOptions}
           value={severity}
           onChange={setSeverity}
+          placeholder="Select a severity"
         />
       </div>
     </div>

@@ -1,43 +1,26 @@
 import React from "react";
 import { PlaceholderCard } from "../../../../components/ui/placeholder-card/PlaceholderCard";
 import { Text } from "../../../../components/ui/text/Text";
-import { useIssuesState } from "../../context/IssuesContext";
-import { useFiltersState } from "../../context/FiltersContext";
 import { useHasPermissionToDrop } from "../../hooks/useHasPermissionToDrop";
 import { IssuePriority, IssueStatus } from "../../models/BoardView.model";
 import DraggableCard from "../draggable-card/DraggableCard";
 
 import "./BoardColumn.css";
 import { useDroppable } from "@dnd-kit/core";
+import { useGetFilteredIssues } from "../../hooks/useGetFilteredIssues";
 
 type BoardColumnProps = {
   status: IssueStatus;
 };
 
 export const BoardColumn = ({ status }: BoardColumnProps) => {
-  const { issues } = useIssuesState();
-  const { searchValue } = useFiltersState();
   const { hasPermissionToDrop } = useHasPermissionToDrop(status);
   const { setNodeRef, active, isOver } = useDroppable({
     id: status,
     disabled: !hasPermissionToDrop,
   });
 
-  const filteredIssues = React.useMemo(() => {
-    return issues.filter((issue) => {
-      const isInThisColumn = issue.status === status;
-
-      if (!searchValue) {
-        return isInThisColumn;
-      }
-
-      const titleMatchesSearch = issue.title
-        .toLowerCase()
-        .includes(searchValue.toLowerCase());
-
-      return isInThisColumn && titleMatchesSearch;
-    });
-  }, [issues, status, searchValue]);
+  const filteredIssues = useGetFilteredIssues(status);
 
   const shouldShowPlaceholder = React.useMemo(() => {
     return !!active && active.data.current?.status !== status;

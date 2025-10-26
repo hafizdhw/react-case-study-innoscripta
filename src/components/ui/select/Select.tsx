@@ -10,15 +10,24 @@ type SelectProps = {
   options: Option[];
   value: string;
   onChange: (value: string) => void;
+  placeholder?: string;
 };
 
-export const Select = ({ options, value, onChange }: SelectProps) => {
+export const Select = ({
+  options,
+  value,
+  onChange,
+  placeholder = "Select an option",
+}: SelectProps) => {
   return (
     <select
       value={value}
       onChange={(e) => onChange(e.target.value)}
       className="select"
     >
+      <option value="" disabled>
+        {placeholder}
+      </option>
       {options.map((opt) => (
         <option
           key={opt.value}
