@@ -1,7 +1,6 @@
 .board {
     display: flex;
     gap: var(--spacing-lg);
-    padding: var(--spacing-lg);
     background: var(--color-background);
     height: 80vh;
 }

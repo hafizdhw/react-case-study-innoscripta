@@ -29,3 +29,7 @@
     background: var(--color-primary);
     color: var(--color-text);
 }
+
+.select__default-option {
+    color: var(--color-text-light);
+}

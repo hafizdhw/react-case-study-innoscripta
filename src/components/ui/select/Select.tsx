@@ -25,7 +25,7 @@ export const Select = ({
       onChange={(e) => onChange(e.target.value)}
       className="select"
     >
-      <option value="" disabled>
+      <option className="select__default-option" value="" disabled>
         {placeholder}
       </option>
       {options.map((opt) => (
