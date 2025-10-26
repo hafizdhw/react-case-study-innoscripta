@@ -8,6 +8,7 @@ import DraggableCard from "../draggable-card/DraggableCard";
 import "./BoardColumn.css";
 import { useDroppable } from "@dnd-kit/core";
 import { useGetFilteredIssues } from "../../hooks/useGetFilteredIssues";
+import { useGetSortedIssues } from "../../hooks/useGetSortedIssues";
 
 type BoardColumnProps = {
   status: IssueStatus;
@@ -21,6 +22,7 @@ export const BoardColumn = ({ status }: BoardColumnProps) => {
   });
 
   const filteredIssues = useGetFilteredIssues(status);
+  const sortedIssues = useGetSortedIssues(filteredIssues);
 
   const shouldShowPlaceholder = React.useMemo(() => {
     return !!active && active.data.current?.status !== status;
@@ -29,13 +31,19 @@ export const BoardColumn = ({ status }: BoardColumnProps) => {
   return (
     <div ref={setNodeRef} className="board-column">
       <div className="board-column__header">
-        <Text variant="paragraph" size="md" className="board-column__header-text">
+        <Text
+          variant="paragraph"
+          size="md"
+          className="board-column__header-text"
+        >
           {status}
         </Text>
-        <Text variant="paragraph" size="md">{filteredIssues.length}</Text>
+        <Text variant="paragraph" size="md">
+          {sortedIssues.length}
+        </Text>
       </div>
       <div className="board-column__cards">
-        {filteredIssues.map((issue) => (
+        {sortedIssues.map((issue) => (
           <DraggableCard
             key={issue.id}
             id={issue.id}

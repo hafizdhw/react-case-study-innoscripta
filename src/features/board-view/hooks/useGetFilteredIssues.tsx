@@ -12,9 +12,13 @@ export const useGetFilteredIssues = (columnStatus: string) => {
 
       let isMatchesSearch = true;
       if (searchValue) {
-        isMatchesSearch = issue.title
+        const matchByTitle = issue.title
           .toLowerCase()
           .includes(searchValue.toLowerCase());
+        const mathByTags = issue.tags.some((tag) =>
+          tag.toLowerCase().includes(searchValue.toLowerCase())
+        );
+        isMatchesSearch = matchByTitle || mathByTags;
       }
 
       let isMatchesAssignee = true;

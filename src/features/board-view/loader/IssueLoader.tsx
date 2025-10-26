@@ -4,10 +4,27 @@ import { IssuesActionType, useIssuesDispatch } from "../context/IssuesContext";
 
 export const IssueLoader = () => {
   const dispatch = useIssuesDispatch();
+
   useEffect(() => {
-    mockFetchIssues().then((issues) => {
-      dispatch({ type: IssuesActionType.LOAD_ISSUES, payload: issues });
-    });
-  }, [dispatch]);
+    let isMounted = true;
+
+    const fetchAndDispatch = () => {
+      mockFetchIssues().then((issues) => {
+        if (isMounted) {
+          dispatch({ type: IssuesActionType.LOAD_ISSUES, payload: issues });
+        }
+      });
+    };
+
+    fetchAndDispatch();
+
+    const intervalId = setInterval(fetchAndDispatch, 10000);
+
+    return () => {
+      isMounted = false;
+      clearInterval(intervalId);
+    };
+  }, []);
+
   return null;
 };
