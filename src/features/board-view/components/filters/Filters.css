@@ -4,3 +4,9 @@
     border-radius: var(--radius-md);
     background: var(--color-surface);
 }
+
+.filters__item-field {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}

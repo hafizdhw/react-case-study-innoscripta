@@ -35,11 +35,11 @@ export const Card = ({
         <Badge variant="warning">Sev {severity}</Badge>
       </div>
       {/* TITLE */}
-      <Text variant="h3">{title}</Text>
+      <Text variant="h3" size="lg">{title}</Text>
       {/* Assignee and Date */}
       <div className="card__assignee-date-container">
-        <Text variant="body">{assignee}</Text>
-        <Text variant="body">
+        <Text variant="paragraph" size="sm">{assignee}</Text>
+        <Text variant="paragraph" size="sm">
           {new Date(createdAt).toLocaleDateString([], {
             month: "short",
             day: "numeric",
@@ -60,7 +60,7 @@ export const Card = ({
           ))}
         </div>
       ) : (
-        <Text variant="body" className="card__tags-none">
+        <Text variant="paragraph" size="sm" className="card__tags-none">
           No tags
         </Text>
       )}

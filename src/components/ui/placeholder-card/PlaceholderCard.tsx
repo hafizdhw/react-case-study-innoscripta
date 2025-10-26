@@ -23,7 +23,7 @@ export const PlaceholderCard = ({
         isActive ? `placeholder-card--active-${variant}` : ""
       }`}
     >
-      <Text variant="body">{title}</Text>
+      <Text variant="paragraph" size="md">{title}</Text>
     </div>
   );
 };

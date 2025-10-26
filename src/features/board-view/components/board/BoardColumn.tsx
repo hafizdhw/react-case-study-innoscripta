@@ -29,10 +29,10 @@ export const BoardColumn = ({ status }: BoardColumnProps) => {
   return (
     <div ref={setNodeRef} className="board-column">
       <div className="board-column__header">
-        <Text variant="body" className="board-column__header-text">
+        <Text variant="paragraph" size="md" className="board-column__header-text">
           {status}
         </Text>
-        <Text variant="body">{filteredIssues.length}</Text>
+        <Text variant="paragraph" size="md">{filteredIssues.length}</Text>
       </div>
       <div className="board-column__cards">
         {filteredIssues.map((issue) => (

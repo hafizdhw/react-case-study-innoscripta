@@ -46,7 +46,7 @@ export const Layout = ({ children, title = "Project Name" }: LayoutProps) => {
       {LeftSidebar}
       <div className="board-layout__content">
         <div className="board-layout__title">
-          <Text variant="h1" className="board-layout__title-text">
+          <Text variant="h1" size="2xl" className="board-layout__title-text">
             {title}
           </Text>
         </div>

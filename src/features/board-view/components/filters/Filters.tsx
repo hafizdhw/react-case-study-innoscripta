@@ -30,10 +30,10 @@ export const Filters = () => {
 
   return (
     <div className="filters">
-      <Text variant="h3">Filter Tasks</Text>
+      <Text variant="h3" size="lg">Filter</Text>
 
-      <div>
-        <Text variant="body">Assignee</Text>
+      <div className="filters__item-field">
+        <Text variant="label" size="sm">Assignee</Text>
         <Select
           options={assigneeOptions}
           value={assignee}
@@ -42,8 +42,8 @@ export const Filters = () => {
         />
       </div>
 
-      <div>
-        <Text variant="body">Severity</Text>
+      <div className="filters__item-field">
+        <Text variant="label" size="sm">Severity</Text>
         <Select
           options={severityOptions}
           value={severity}
