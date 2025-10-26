@@ -1,6 +1,6 @@
 import { useDndContext } from "@dnd-kit/core";
 import React from "react";
-import { IssueStatus, IssueStatusEnum } from "../models/BoardView.model";
+import { IssueStatus, IssueStatusEnum } from "../../../models/Issue.model";
 
 export const useHasPermissionToDrop = (status: IssueStatus) => {
   const { active } = useDndContext();

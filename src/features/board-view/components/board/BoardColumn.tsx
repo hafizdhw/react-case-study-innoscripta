@@ -2,7 +2,7 @@ import React from "react";
 import { PlaceholderCard } from "../../../../components/ui/placeholder-card/PlaceholderCard";
 import { Text } from "../../../../components/ui/text/Text";
 import { useHasPermissionToDrop } from "../../hooks/useHasPermissionToDrop";
-import { IssuePriority, IssueStatus } from "../../models/BoardView.model";
+import { IssuePriority, IssueStatus } from "../../../../models/Issue.model";
 import DraggableCard from "../draggable-card/DraggableCard";
 
 import "./BoardColumn.css";
@@ -10,6 +10,7 @@ import { useDroppable } from "@dnd-kit/core";
 import { useGetFilteredIssues } from "../../hooks/useGetFilteredIssues";
 import { useGetSortedIssues } from "../../hooks/useGetSortedIssues";
 import { useNavigate } from "react-router-dom";
+import { addIssueToLocalStorage } from "../../utils/addIssueToLocalStorage";
 
 type BoardColumnProps = {
   status: IssueStatus;
@@ -48,6 +49,7 @@ export const BoardColumn = ({ status }: BoardColumnProps) => {
         {sortedIssues.map((issue) => (
           <DraggableCard
             onClick={() => {
+              addIssueToLocalStorage(issue);
               navigate(`/issue/${issue.id}`);
             }}
             key={issue.id}

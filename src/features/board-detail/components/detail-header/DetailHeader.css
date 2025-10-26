@@ -1,22 +1,18 @@
-.issue-detail-header {
+.detail-header {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-md);
-  padding: var(--spacing-lg);
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  margin-bottom: var(--spacing-lg);
+  width: 100%;
 }
 
-.issue-detail-header__meta {
+.detail-header__meta {
   display: flex;
   align-items: center;
   gap: var(--spacing-sm);
   flex-wrap: wrap;
 }
 
-.issue-detail-header__title {
+.detail-header__title {
   margin: 0;
   line-height: 1.2;
   color: var(--color-text);

@@ -2,7 +2,7 @@ import React from "react";
 import { Text } from "../text/Text";
 import "./Card.css";
 import { Badge } from "../badge/Badge";
-import { Issue } from "../../../features/board-view/models/BoardView.model";
+import { Issue } from "../../../models/Issue.model";
 
 export type CardProps = Pick<
   Issue,

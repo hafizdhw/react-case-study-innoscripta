@@ -1,4 +1,4 @@
-import { Issue } from "../features/board-view/models/BoardView.model";
+import { Issue } from "../models/Issue.model";
 
 export const mockFetchIssues = () => {
   return new Promise<Issue[]>((resolve) => {

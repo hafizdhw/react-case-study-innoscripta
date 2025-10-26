@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { Issue } from "../models/BoardView.model";
+import { Issue } from "../../../models/Issue.model";
 
 export const useGetSortedIssues = (issues: Issue[]) => {
   const sortedIssues = useMemo(() => {

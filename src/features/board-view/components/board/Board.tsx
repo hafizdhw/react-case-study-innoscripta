@@ -8,7 +8,7 @@ import {
 } from "@dnd-kit/core";
 import "./Board.css";
 
-import { IssueStatus, IssueStatusEnum } from "../../models/BoardView.model";
+import { IssueStatus, IssueStatusEnum } from "../../../../models/Issue.model";
 import { BoardColumn } from "./BoardColumn";
 import {
   IssuesActionType,

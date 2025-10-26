@@ -5,7 +5,7 @@ import React, {
   ReactNode,
   Dispatch,
 } from "react";
-import { Issue, IssueStatus } from "../models/BoardView.model";
+import { Issue, IssueStatus } from "../../../models/Issue.model";
 
 export enum IssuesActionType {
   LOAD_ISSUES = "LOAD_ISSUES",

@@ -1,12 +1,12 @@
 import React from "react";
 
-import "./DetailHeader.css";
 import { Badge } from "../../../../components/ui/badge/Badge";
 import {
   IssuePriorityEnum,
   IssueStatusEnum,
-} from "../../../board-view/models/BoardView.model";
+} from "../../../../models/Issue.model";
 import { Text } from "../../../../components/ui/text/Text";
+import "./DetailHeader.css";
 
 export const DetailHeader = () => {
   return (

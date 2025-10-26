@@ -10,7 +10,13 @@ export const IssuesHistory = () => {
   const handleToggle = () => setExpanded((prev) => !prev);
 
   return (
-    <div className="issues-history">
+    <div
+      className="issues-history"
+      style={{
+        width: expanded ? "18rem" : "3.5rem",
+        transition: "width 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
+      }}
+    >
       <div className="issues-history__header">
         <Text variant="h3" size="md">
           <strong>{expanded ? "Recent Visited Issues" : ""}</strong>
