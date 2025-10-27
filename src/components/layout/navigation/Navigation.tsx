@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { SyncStatus } from "../../../features/board/components/board-view/sync-status/SyncStatus";
 
 export const Navigation = () => (
   <nav style={{ padding: "1rem", background: "#eee" }}>

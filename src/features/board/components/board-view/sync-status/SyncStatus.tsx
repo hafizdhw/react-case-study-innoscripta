@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React from "react";
 import { useIssuesState } from "../../../context/IssuesContext";
 import { SyncIcon } from "./SyncIcon";
 import "./SyncStatus.css";

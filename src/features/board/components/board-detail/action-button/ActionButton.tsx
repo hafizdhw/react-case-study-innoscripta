@@ -53,7 +53,7 @@ export const ActionButton = ({
       });
       toast.dismissAll();
     };
-  }, []);
+  }, [dispatch, issueId, toast]);
 
   const handleStatusChange = async (value: IssueStatus) => {
     previousStatus.current = status;
