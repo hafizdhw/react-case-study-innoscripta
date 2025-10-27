@@ -64,39 +64,11 @@
 }
 
 .toast__action-button {
-  background: none;
-  border: none;
-  color: var(--color-primary);
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-medium);
-  cursor: pointer;
-  padding: var(--spacing-xs) var(--spacing-sm);
-  border-radius: var(--radius-sm);
-  transition: background-color 0.2s ease;
-}
-
-.toast__action-button:hover {
-  background-color: var(--color-surface);
+  /* Button component handles styling */
 }
 
 .toast__close-button {
-  background: none;
-  border: none;
-  color: var(--color-text-light);
-  cursor: pointer;
-  padding: var(--spacing-xs);
-  border-radius: var(--radius-sm);
-  transition: all 0.2s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 20px;
-  height: 20px;
-}
-
-.toast__close-button:hover {
-  background-color: var(--color-surface);
-  color: var(--color-text);
+  /* Button component handles styling */
 }
 
 .toast__close-icon {

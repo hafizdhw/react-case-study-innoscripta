@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Select } from "../../../../../components/ui/select/Select";
 import { Text } from "../../../../../components/ui/text/Text";
+import { Button } from "../../../../../components/ui/button";
 import { useGetFiltersOptions } from "../../../hooks/useGetFIltersOptions";
 import { useDebounce } from "../../../../../hooks/useDebounce";
 import {
@@ -58,13 +59,15 @@ export const Filters = () => {
           Filter
         </Text>
         {shouldShowClearFilters && (
-          <button
+          <Button
             className="filters__clear-btn"
             onClick={handleClearFilters}
             type="button"
+            variant="secondary"
+            size="sm"
           >
             Clear filters
-          </button>
+          </Button>
         )}
       </div>
       <div className="filters__fields">

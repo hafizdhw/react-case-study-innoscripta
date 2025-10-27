@@ -1,7 +1,6 @@
 import React from "react";
 import { BoardDetailPage } from "../features/board/components/board-detail/board-detail-page/BoardDetailPage";
 import { useParams } from "react-router-dom";
-import { ToastRenderer } from "../components/ui/toaster/ToastRenderer";
 
 export const IssueDetailPage = () => {
   const { id } = useParams();
@@ -11,7 +10,6 @@ export const IssueDetailPage = () => {
   return (
     <>
       <BoardDetailPage issueId={id} />
-      <ToastRenderer />
     </>
   );
 };

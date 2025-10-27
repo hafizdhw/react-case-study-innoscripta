@@ -5,6 +5,7 @@ import { ActionButton } from "../action-button/ActionButton";
 import { DetailHeader } from "../detail-header/DetailHeader";
 import { useGetIssue } from "../../../hooks/useGetIssue";
 import { useNavigate } from "react-router-dom";
+import { Button } from "../../../../../components/ui/button";
 
 export const BoardDetailPage = ({ issueId }: { issueId: string }) => {
   const { issue, isLoading } = useGetIssue(issueId);
@@ -23,13 +24,15 @@ export const BoardDetailPage = ({ issueId }: { issueId: string }) => {
   return (
     <div className="board-detail-page">
       <div className="board-detail-page__content">
-        <button
+        <Button
           type="button"
           onClick={handleBack}
+          variant="secondary"
+          size="sm"
           className="board-detail-page__back-button"
         >
           ← Back
-        </button>
+        </Button>
         <DetailHeader title={issue.title} />
         <div className="board-detail-page__main">
           <DetailBody

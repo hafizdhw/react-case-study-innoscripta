@@ -4,7 +4,6 @@ import { Board } from "../features/board/components/board-view/board/Board";
 import { Filters } from "../features/board/components/board-view/filters/Filters";
 import { FiltersProvider } from "../features/board/context/FiltersContext";
 import { IssuesHistory } from "../features/board/components/board-view/issues-history/IssuesHistory";
-import { ToastRenderer } from "../components/ui/toaster/ToastRenderer";
 import { SyncStatus } from "../features/board/components/board-view/sync-status/SyncStatus";
 
 export const BoardPage = () => {
@@ -22,7 +21,6 @@ export const BoardPage = () => {
           <Board />
         </Layout.Main>
       </Layout>
-      <ToastRenderer />
     </FiltersProvider>
   );
 };

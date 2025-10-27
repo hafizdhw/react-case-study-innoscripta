@@ -1,6 +1,7 @@
 import React from "react";
 import "./BaseLayout.css";
 import { Text } from "../../../../../components/ui/text/Text";
+import { Button } from "../../../../../components/ui/button";
 import {
   BoardLayoutProvider,
   useBoardLayout,
@@ -26,9 +27,14 @@ const LayoutLeftSidebar = ({ children }: LayoutCompoundProps) => {
         transition: "width 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
       }}
     >
-      <button onClick={toggleSidebar} className="board-layout__toggle">
+      <Button 
+        onClick={toggleSidebar} 
+        variant="secondary" 
+        size="sm"
+        className="board-layout__toggle"
+      >
         {isExpanded ? "▼" : "▶"}
-      </button>
+      </Button>
       {children}
     </div>
   );

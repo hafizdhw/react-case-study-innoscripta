@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useCallback } from "react";
 import "./Toaster.css";
+import { Button } from "../button";
 
 export interface ToastAction {
   text: string;
@@ -76,20 +77,24 @@ const ToastItem = ({ toast, onDismiss }: ToastItemProps) => {
       
       <div className="toast__actions">
         {toast.action && (
-          <button
+          <Button
             className="toast__action-button"
             onClick={handleActionClick}
             type="button"
+            variant="primary"
+            size="sm"
           >
             {toast.action.text}
-          </button>
+          </Button>
         )}
         
         {toast.dismissible !== false && (
-          <button
+          <Button
             className="toast__close-button"
             onClick={handleDismiss}
             type="button"
+            variant="secondary"
+            size="sm"
             aria-label="Close toast"
           >
             <svg
@@ -104,7 +109,7 @@ const ToastItem = ({ toast, onDismiss }: ToastItemProps) => {
               <line x1="18" y1="6" x2="6" y2="18"></line>
               <line x1="6" y1="6" x2="18" y2="18"></line>
             </svg>
-          </button>
+          </Button>
         )}
       </div>
       

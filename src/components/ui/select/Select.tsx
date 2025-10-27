@@ -11,9 +11,11 @@ type SelectProps = {
   value: string;
   onChange: (value: string) => void;
   placeholder?: string;
+  disabled?: boolean;
 };
 
 export const Select = ({
+  disabled = false,
   options,
   value,
   onChange,
@@ -24,6 +26,7 @@ export const Select = ({
       value={value}
       onChange={(e) => onChange(e.target.value)}
       className="select"
+      disabled={disabled}
     >
       <option className="select__default-option" value="" disabled>
         {placeholder}

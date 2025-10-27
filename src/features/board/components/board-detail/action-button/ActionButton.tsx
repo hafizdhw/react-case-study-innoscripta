@@ -13,6 +13,7 @@ import {
 } from "../../../context/IssuesContext";
 import { useToast } from "../../../../../components/ui/toaster/useToast";
 import { mockUpdateIssue } from "../../../../../utils/api";
+import { useGetCurrentUser } from "../../../../login/context/AuthContext";
 
 export const ActionButton = ({
   status: initialStatus,
@@ -21,6 +22,7 @@ export const ActionButton = ({
   status: Issue["status"];
   issueId: string;
 }) => {
+  const user = useGetCurrentUser();
   const previousStatus = useRef<Issue["status"]>(initialStatus);
   const [status, setStatus] = useState<Issue["status"]>(initialStatus);
   const dispatch = useIssuesDispatch();
@@ -101,6 +103,7 @@ export const ActionButton = ({
       </Text>
       <div className="action-button__section">
         <Select
+          disabled={user?.role !== "admin"}
           options={options}
           value={status}
           onChange={(value) => handleStatusChange(value as IssueStatus)}
