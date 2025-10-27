@@ -8,14 +8,14 @@ import {
 } from "@dnd-kit/core";
 import "./Board.css";
 
-import { IssueStatus, IssueStatusEnum } from "../../../../models/Issue.model";
+import { IssueStatus, IssueStatusEnum } from "../../../../../models/Issue.model";
 import { BoardColumn } from "./BoardColumn";
 import {
   IssuesActionType,
   useIssuesDispatch,
-} from "../../context/IssuesContext";
-import { mockUpdateIssue } from "../../../../utils/api";
-import { useToast } from "../../../../components/ui/toaster/useToast";
+} from "../../../context/IssuesContext";
+import { mockUpdateIssue } from "../../../../../utils/api";
+import { useToast } from "../../../../../components/ui/toaster/useToast";
 
 const UNDO_DURATION = 5000;
 

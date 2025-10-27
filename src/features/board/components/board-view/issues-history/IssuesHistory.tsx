@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { Text } from "../../../../components/ui/text/Text";
+import { Text } from "../../../../../components/ui/text/Text";
 import "./IssuesHistory.css";
-import { useGetRecentVisttedIssues } from "../../hooks/useGetRecentVisttedIssues";
+import { useGetRecentVisttedIssues } from "../../../hooks/useGetRecentVisttedIssues";
 
 export const IssuesHistory = () => {
   const recentVisttedIssues = useGetRecentVisttedIssues();

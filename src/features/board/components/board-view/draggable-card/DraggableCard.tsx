@@ -1,5 +1,5 @@
 import { useDraggable } from "@dnd-kit/core";
-import { Card, CardProps } from "../../../../components/ui/card/Card";
+import { Card, CardProps } from "../../../../../components/ui/card/Card";
 
 import "./DraggableCard.css";
 import { memo } from "react";

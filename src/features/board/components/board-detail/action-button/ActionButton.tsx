@@ -1,7 +1,7 @@
 import React from "react";
 import "./ActionButton.css";
-import { Text } from "../../../../components/ui/text/Text";
-import { Select } from "../../../../components/ui/select/Select";
+import { Text } from "../../../../../components/ui/text/Text";
+import { Select } from "../../../../../components/ui/select/Select";
 
 export const ActionButton = () => {
   return (

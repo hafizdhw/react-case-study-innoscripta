@@ -1,11 +1,11 @@
 import React from "react";
-import { Layout } from "../features/board-view/components/base-layout/BaseLayout";
-import { Board } from "../features/board-view/components/board/Board";
-import { IssueLoader } from "../features/board-view/loader/IssueLoader";
-import { Filters } from "../features/board-view/components/filters/Filters";
-import { IssuesProvider } from "../features/board-view/context/IssuesContext";
-import { FiltersProvider } from "../features/board-view/context/FiltersContext";
-import { IssuesHistory } from "../features/board-view/components/issues-history/IssuesHistory";
+import { Layout } from "../features/board/components/board-view/base-layout/BaseLayout";
+import { Board } from "../features/board/components/board-view/board/Board";
+import { IssueLoader } from "../features/board/loader/IssueLoader";
+import { Filters } from "../features/board/components/board-view/filters/Filters";
+import { IssuesProvider } from "../features/board/context/IssuesContext";
+import { FiltersProvider } from "../features/board/context/FiltersContext";
+import { IssuesHistory } from "../features/board/components/board-view/issues-history/IssuesHistory";
 import {
   ToastRenderer,
 } from "../components/ui/toaster/ToastRenderer";

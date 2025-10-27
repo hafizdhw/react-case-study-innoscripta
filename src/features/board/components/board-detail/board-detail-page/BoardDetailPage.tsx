@@ -3,7 +3,7 @@ import "./BoardDetailPage.css";
 import { DetailBody } from "../detail-body/DetailBody";
 import { ActionButton } from "../action-button/ActionButton";
 import { DetailHeader } from "../detail-header/DetailHeader";
-import { useGetIssue } from "../../hooks/useGetIssue";
+import { useGetIssue } from "../../../hooks/useGetIssue";
 import { useNavigate } from "react-router-dom";
 
 export const BoardDetailPage = ({ issueId }: { issueId: string }) => {

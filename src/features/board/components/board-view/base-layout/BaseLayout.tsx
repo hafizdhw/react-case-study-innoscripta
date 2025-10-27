@@ -1,6 +1,6 @@
 import React from "react";
 import "./BaseLayout.css";
-import { Text } from "../../../../components/ui/text/Text";
+import { Text } from "../../../../../components/ui/text/Text";
 
 type LayoutProps = {
   children: React.ReactNode;

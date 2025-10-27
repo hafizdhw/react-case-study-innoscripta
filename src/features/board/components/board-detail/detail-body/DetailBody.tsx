@@ -1,8 +1,8 @@
 import React from "react";
 import "./DetailBody.css";
 
-import { Text } from "../../../../components/ui/text/Text";
-import { Badge } from "../../../../components/ui/badge/Badge";
+import { Text } from "../../../../../components/ui/text/Text";
+import { Badge } from "../../../../../components/ui/badge/Badge";
 
 export const DetailBody = () => {
   const tags = ["auth", "bug"];

@@ -1,15 +1,15 @@
 import React, { useState } from "react";
-import { Select } from "../../../../components/ui/select/Select";
-import { Text } from "../../../../components/ui/text/Text";
-import { useGetFiltersOptions } from "../../hooks/useGetFIltersOptions";
-import { useDebounce } from "../../../../hooks/useDebounce";
+import { Select } from "../../../../../components/ui/select/Select";
+import { Text } from "../../../../../components/ui/text/Text";
+import { useGetFiltersOptions } from "../../../hooks/useGetFIltersOptions";
+import { useDebounce } from "../../../../../hooks/useDebounce";
 import {
   FiltersActionType,
   useFiltersDispatch,
-} from "../../context/FiltersContext";
+} from "../../../context/FiltersContext";
 
 import "./Filters.css";
-import { TextInput } from "../../../../components/ui/text-input/TextInput";
+import { TextInput } from "../../../../../components/ui/text-input/TextInput";
 
 export const Filters = () => {
   const { assigneeOptions, severityOptions } = useGetFiltersOptions();
