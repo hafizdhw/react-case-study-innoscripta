@@ -5,7 +5,13 @@ export const Badge = ({
   variant,
 }: {
   children: React.ReactNode;
-  variant: "primary" | "success" | "danger" | "warning" | "info";
+  variant:
+    | "primary"
+    | "success"
+    | "danger"
+    | "warning"
+    | "info"
+    | "secondary-dark";
 }) => {
   return <span className={`badge badge--${variant}`}>{children}</span>;
 };

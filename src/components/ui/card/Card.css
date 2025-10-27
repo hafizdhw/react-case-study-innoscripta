@@ -1,5 +1,4 @@
 .card {
-    position: relative;
     padding: var(--spacing-md);
     background: var(--color-background);
     border: 1.5px solid var(--color-border);
@@ -8,27 +7,19 @@
     margin-bottom: var(--spacing-sm);
     width: 13.75rem;
     transition: box-shadow 0.2s;
+    gap: var(--spacing-sm);
+    display: flex;
+    flex-direction: column;
 }
 
-.card__meta-container {
-    display: flex;
-    align-items: center;
-    margin-bottom: var(--spacing-xs);
-    gap: var(--spacing-xs);
+.card:hover {
+    box-shadow: var(--shadow-md);
+    background: var(--color-surface);
 }
 
-.card__assignee-date-container {
+.card__details {
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
     margin-top: var(--spacing-xxs, 6px);
-}
-
-.card__tags-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--spacing-xxs, 4px);
-}
-
-.card__tags-none {
-    font-style: italic;
 }

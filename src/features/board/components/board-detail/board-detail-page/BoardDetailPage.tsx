@@ -30,10 +30,16 @@ export const BoardDetailPage = ({ issueId }: { issueId: string }) => {
         >
           ← Back
         </button>
-        <DetailHeader />
+        <DetailHeader title={issue.title} />
         <div className="board-detail-page__main">
-          <DetailBody />
-          <ActionButton />
+          <DetailBody
+            assignee={issue.assignee}
+            createdAt={issue.createdAt}
+            priority={issue.priority}
+            severity={issue.severity}
+            tags={issue.tags}
+          />
+          <ActionButton status={issue.status} issueId={issueId} />
         </div>
       </div>
     </div>

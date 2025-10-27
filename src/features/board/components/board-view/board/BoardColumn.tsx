@@ -18,10 +18,10 @@ type BoardColumnProps = {
 
 export const BoardColumn = ({ status }: BoardColumnProps) => {
   const navigate = useNavigate();
-  
+
   // Check if the currently dragged item can be dropped on this column
   const { hasPermissionToDrop } = useHasPermissionToDrop(status);
-  
+
   // Set up droppable area for drag-and-drop
   const { setNodeRef, active, isOver } = useDroppable({
     id: status,
@@ -52,7 +52,7 @@ export const BoardColumn = ({ status }: BoardColumnProps) => {
           {sortedIssues.length}
         </Text>
       </div>
-      
+
       {/* Column content area with draggable cards */}
       <div className="board-column__cards">
         {/* Render all issues in this column */}
@@ -69,13 +69,10 @@ export const BoardColumn = ({ status }: BoardColumnProps) => {
             title={issue.title}
             status={issue.status as IssueStatus}
             priority={issue.priority as IssuePriority}
-            severity={issue.severity}
-            createdAt={issue.createdAt}
             assignee={issue.assignee}
-            tags={issue.tags}
           />
         ))}
-        
+
         {/* Show placeholder during drag operations */}
         {shouldShowPlaceholder && (
           <PlaceholderCard

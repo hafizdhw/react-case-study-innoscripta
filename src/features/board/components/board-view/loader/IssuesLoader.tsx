@@ -17,7 +17,7 @@ import {
  * The periodic refresh simulates real-time updates that would come from
  * WebSocket connections or polling in a production application.
  */
-export const IssueLoader = () => {
+export const IssuesLoader = () => {
   const dispatch = useIssuesDispatch();
 
   useEffect(() => {

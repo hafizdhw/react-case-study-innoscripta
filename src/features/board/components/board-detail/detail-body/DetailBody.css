@@ -12,11 +12,31 @@
   padding: var(--spacing-lg);
 }
 
-.detail-body__field {
+.detail-body__fields-container {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-xs);
-  margin-bottom: var(--spacing-md);
+  gap: var(--spacing-sm);
+}
+
+.detail-body__field {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.detail-body__field-label {
+  flex: 0 0 auto;
+  min-width: 100px;
+  font-weight: 500;
+}
+
+.detail-body__field-value {
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 .detail-body__tags {
@@ -24,4 +44,5 @@
   flex-wrap: wrap;
   gap: var(--spacing-xs);
   align-items: center;
+  justify-content: flex-end;
 }

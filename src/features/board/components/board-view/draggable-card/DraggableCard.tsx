@@ -3,22 +3,21 @@ import { Card, CardProps } from "../../../../../components/ui/card/Card";
 
 import "./DraggableCard.css";
 import { memo } from "react";
+import { IssueStatus } from "../../../../../models/Issue.model";
 
 type DraggableCardProps = CardProps & {
   id: string;
   onClick?: () => void;
+  status: IssueStatus;
 };
 
 const DraggableCard = ({
   id,
   title,
-  status,
   priority,
-  severity,
-  createdAt,
   assignee,
-  tags,
   onClick,
+  status,
 }: DraggableCardProps) => {
   // Set up drag-and-drop functionality
   const { attributes, listeners, setNodeRef, transform, isDragging, active } =
@@ -50,15 +49,7 @@ const DraggableCard = ({
       ${isOtherCardDragging ? "draggable-card--inactive" : ""}`}
       onClick={onClick}
     >
-      <Card
-        title={title}
-        status={status}
-        priority={priority}
-        severity={severity}
-        createdAt={createdAt}
-        assignee={assignee}
-        tags={tags}
-      />
+      <Card title={title} priority={priority} assignee={assignee} />
     </div>
   );
 };

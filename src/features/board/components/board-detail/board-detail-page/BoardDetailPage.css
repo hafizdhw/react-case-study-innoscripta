@@ -1,12 +1,11 @@
 .board-detail-page {
   min-height: 100vh;
   background: var(--color-background);
-  padding: var(--spacing-lg);
+  padding: var(--spacing-xl);
 }
 
 .board-detail-page__content {
-  max-width: 75rem;
-  margin: 0 auto;
+  max-width: 40rem;
   display: flex;
   flex-direction: column;
   gap: var(--spacing-lg);
@@ -30,4 +29,9 @@
   color: var(--color-text);
   font-weight: 500;
   font-size: 1rem;
+}
+
+.board-detail-page__back-button:hover {
+  background: var(--color-text-light);
+  color: var(--color-surface);
 }

@@ -8,7 +8,10 @@ import {
 } from "@dnd-kit/core";
 import "./Board.css";
 
-import { IssueStatus, IssueStatusEnum } from "../../../../../models/Issue.model";
+import {
+  IssueStatus,
+  IssueStatusEnum,
+} from "../../../../../models/Issue.model";
 import { BoardColumn } from "./BoardColumn";
 import {
   IssuesActionType,
@@ -22,7 +25,7 @@ const UNDO_DURATION = 5000;
 export const Board = () => {
   const dispatch = useIssuesDispatch();
   const toast = useToast();
-  
+
   // Configure mouse sensor with activation constraint to prevent accidental drags
   const mouseSensor = useSensor(MouseSensor, {
     activationConstraint: {
@@ -34,20 +37,20 @@ export const Board = () => {
 
   /**
    * Handles the end of a drag operation
-   * 
+   *
    * This function:
    * 1. Extracts the target status and dragged issue ID
    * 2. Optimistically updates the issue status in the UI
    * 3. Attempts to persist the change via API call
    * 4. Shows a toast with undo option
    * 5. Handles API failures by automatically undoing the change
-   * 
+   *
    * @param event - Drag end event containing source and target information
    */
   async function handleDragEnd(event: DragEndEvent) {
     const targetStatus = event.over?.id;
     const activeIssueId = event.active.id;
-    
+
     if (targetStatus && activeIssueId) {
       const activeIssue = event.active.data.current;
       if (activeIssue) {
@@ -57,7 +60,7 @@ export const Board = () => {
           issueId: String(activeIssueId),
           newStatus: targetStatus as IssueStatus,
         });
-        
+
         // Attempt to persist the change to the backend
         const proceedUpdate = async () => {
           try {
@@ -70,12 +73,17 @@ export const Board = () => {
               type: IssuesActionType.UNDO_ISSUE,
               issueId: String(activeIssueId),
             });
+            toast.show({
+              message: "Failed to update issue",
+              type: "error",
+              duration: UNDO_DURATION,
+            });
           }
         };
-        
+
         // Set up automatic API call after a short delay
         const timeout = setTimeout(() => proceedUpdate(), UNDO_DURATION);
-        
+
         // Show success toast with undo option
         toast.show({
           message: "Issue updated",

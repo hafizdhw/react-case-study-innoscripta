@@ -32,3 +32,8 @@
     background: var(--color-info);
     color: #fff;
 }
+
+.badge--secondary-dark {
+    background: var(--color-secondary-dark);
+    color: #fff;
+}
