@@ -1,6 +1,10 @@
 import React from "react";
 import "./BaseLayout.css";
 import { Text } from "../../../../../components/ui/text/Text";
+import {
+  BoardLayoutProvider,
+  useBoardLayout,
+} from "../../../context/BoardLayoutContext";
 
 type LayoutProps = {
   children: React.ReactNode;
@@ -11,9 +15,24 @@ type LayoutCompoundProps = {
   children: React.ReactNode;
 };
 
-const LayoutLeftSidebar = ({ children }: LayoutCompoundProps) => (
-  <>{children}</>
-);
+const LayoutLeftSidebar = ({ children }: LayoutCompoundProps) => {
+  const { isExpanded, toggleSidebar } = useBoardLayout();
+
+  return (
+    <div
+      className="board-layout__left-sidebar"
+      style={{
+        width: isExpanded ? "18rem" : "3.5rem",
+        transition: "width 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
+      }}
+    >
+      <button onClick={toggleSidebar} className="board-layout__toggle">
+        {isExpanded ? "▼" : "▶"}
+      </button>
+      {children}
+    </div>
+  );
+};
 LayoutLeftSidebar.displayName = "LayoutLeftSidebar";
 
 const LayoutToolbar = ({ children }: LayoutCompoundProps) => (
@@ -42,18 +61,20 @@ export const Layout = ({ children, title = "Project Name" }: LayoutProps) => {
   );
 
   return (
-    <div className="board-layout">
-      {LeftSidebar}
-      <div className="board-layout__content">
-        <div className="board-layout__title">
-          <Text variant="h1" size="2xl" className="board-layout__title-text">
-            {title}
-          </Text>
+    <BoardLayoutProvider>
+      <div className="board-layout">
+        {LeftSidebar}
+        <div className="board-layout__content">
+          <div className="board-layout__title">
+            <Text variant="h1" size="2xl" className="board-layout__title-text">
+              {title}
+            </Text>
+          </div>
+          {Toolbar}
+          <div className="board-layout__body">{Main}</div>
         </div>
-        {Toolbar}
-        <div className="board-layout__body">{Main}</div>
       </div>
-    </div>
+    </BoardLayoutProvider>
   );
 };
 

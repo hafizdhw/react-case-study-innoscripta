@@ -9,6 +9,7 @@ import { Issue, IssueStatus } from "../../../models/Issue.model";
 
 export enum IssuesActionType {
   LOAD_ISSUES = "LOAD_ISSUES",
+  START_LOAD_ISSUES = "START_LOAD_ISSUES",
   UPDATE_ISSUE = "UPDATE_ISSUE",
   UNDO_ISSUE = "UNDO_ISSUE",
   REMOVE_LAST_UPDATED_ISSUE = "REMOVE_LAST_UPDATED_ISSUE",
@@ -20,12 +21,25 @@ interface IssuesState {
     originalIndex: number;
     originalIssue: Issue;
   }[];
+  isInitializing: boolean;
+  isSyncing: boolean;
+  lastUpdatedAt: Date;
 }
 
 type IssuesAction =
   | {
       type: IssuesActionType.LOAD_ISSUES;
-      payload: Issue[];
+      payload: {
+        issues: Issue[];
+        fromSync?: boolean;
+      };
+    }
+  | {
+      type: IssuesActionType.START_LOAD_ISSUES;
+      payload: {
+        isInitializing?: boolean;
+        isSyncing?: boolean;
+      };
     }
   | {
       type: IssuesActionType.UPDATE_ISSUE;
@@ -42,9 +56,21 @@ const IssuesDispatchContext = createContext<Dispatch<IssuesAction> | undefined>(
 
 function issuesReducer(state: IssuesState, action: IssuesAction): IssuesState {
   switch (action.type) {
+    case IssuesActionType.START_LOAD_ISSUES:
+      return {
+        ...state,
+        issues: state.issues,
+        isInitializing: action.payload.isInitializing ?? false,
+        isSyncing: action.payload.isSyncing ?? false,
+      };
     case IssuesActionType.LOAD_ISSUES:
-      return { ...state, issues: action.payload };
-    
+      return {
+        ...state,
+        issues: action.payload.fromSync ? state.issues : action.payload.issues,
+        isInitializing: false,
+        isSyncing: false,
+        lastUpdatedAt: new Date(),
+      };
     case IssuesActionType.UPDATE_ISSUE:
       const { issueId, newStatus } = action;
       // Find the original position of the issue before updating
@@ -53,11 +79,11 @@ function issuesReducer(state: IssuesState, action: IssuesAction): IssuesState {
       );
       const newIssues = [...state.issues];
       const updatedIssue = newIssues.find((issue) => issue.id === issueId);
-      
+
       if (updatedIssue) {
         // Remove the issue from its current position
         newIssues.splice(newIssues.indexOf(updatedIssue), 1);
-        
+
         return {
           ...state,
           // Add the updated issue to the beginning of the list
@@ -73,7 +99,7 @@ function issuesReducer(state: IssuesState, action: IssuesAction): IssuesState {
         };
       }
       return state;
-    
+
     case IssuesActionType.REMOVE_LAST_UPDATED_ISSUE:
       const { issueId: tempIssueId } = action;
       // Remove the undo tracking for a specific issue
@@ -84,7 +110,7 @@ function issuesReducer(state: IssuesState, action: IssuesAction): IssuesState {
         ...state,
         lastUpdatedIssues: newLastUpdatedIssues,
       };
-    
+
     case IssuesActionType.UNDO_ISSUE:
       const { issueId: undoIssueId } = action;
       // Find the original state of the issue to undo
@@ -113,7 +139,7 @@ function issuesReducer(state: IssuesState, action: IssuesAction): IssuesState {
         ...state,
         issues: newUndoneIssues,
       };
-    
+
     default:
       return state;
   }
@@ -123,6 +149,9 @@ export const IssuesProvider = ({ children }: { children: ReactNode }) => {
   const [state, dispatch] = useReducer(issuesReducer, {
     issues: [],
     lastUpdatedIssues: [],
+    isInitializing: false,
+    isSyncing: false,
+    lastUpdatedAt: new Date(),
   });
   return (
     <IssuesStateContext.Provider value={state}>
@@ -135,7 +164,7 @@ export const IssuesProvider = ({ children }: { children: ReactNode }) => {
 
 /**
  * Hook to access the issues state from context
- * 
+ *
  * @returns Current issues state
  * @throws Error if used outside of IssuesProvider
  */
@@ -149,7 +178,7 @@ export function useIssuesState() {
 
 /**
  * Hook to access the issues dispatch function from context
- * 
+ *
  * @returns Dispatch function for updating issues state
  * @throws Error if used outside of IssuesProvider
  */
