@@ -18,21 +18,28 @@ type BoardColumnProps = {
 
 export const BoardColumn = ({ status }: BoardColumnProps) => {
   const navigate = useNavigate();
+  
+  // Check if the currently dragged item can be dropped on this column
   const { hasPermissionToDrop } = useHasPermissionToDrop(status);
+  
+  // Set up droppable area for drag-and-drop
   const { setNodeRef, active, isOver } = useDroppable({
     id: status,
-    disabled: !hasPermissionToDrop,
+    disabled: !hasPermissionToDrop, // Disable if drop is not allowed
   });
 
+  // Get filtered and sorted issues for this column
   const filteredIssues = useGetFilteredIssues(status);
   const sortedIssues = useGetSortedIssues(filteredIssues);
 
+  // Determine if we should show a placeholder card during drag operations
   const shouldShowPlaceholder = React.useMemo(() => {
     return !!active && active.data.current?.status !== status;
   }, [active, status]);
 
   return (
     <div ref={setNodeRef} className="board-column">
+      {/* Column header with status name and issue count */}
       <div className="board-column__header">
         <Text
           variant="paragraph"
@@ -45,11 +52,16 @@ export const BoardColumn = ({ status }: BoardColumnProps) => {
           {sortedIssues.length}
         </Text>
       </div>
+      
+      {/* Column content area with draggable cards */}
       <div className="board-column__cards">
+        {/* Render all issues in this column */}
         {sortedIssues.map((issue) => (
           <DraggableCard
             onClick={() => {
+              // Track this issue as recently accessed
               addIssueToLocalStorage(issue);
+              // Navigate to issue detail page
               navigate(`/issue/${issue.id}`);
             }}
             key={issue.id}
@@ -63,6 +75,8 @@ export const BoardColumn = ({ status }: BoardColumnProps) => {
             tags={issue.tags}
           />
         ))}
+        
+        {/* Show placeholder during drag operations */}
         {shouldShowPlaceholder && (
           <PlaceholderCard
             title={hasPermissionToDrop ? status : "Not allowed"}

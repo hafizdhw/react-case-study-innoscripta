@@ -20,6 +20,7 @@ const DraggableCard = ({
   tags,
   onClick,
 }: DraggableCardProps) => {
+  // Set up drag-and-drop functionality
   const { attributes, listeners, setNodeRef, transform, isDragging, active } =
     useDraggable({
       id,
@@ -28,6 +29,7 @@ const DraggableCard = ({
       },
     });
 
+  // Apply transform styles when dragging
   const style = transform
     ? {
         transform: `translate3d(${transform.x}px, ${transform.y}px, 0)`,

@@ -47,16 +47,22 @@ function issuesReducer(state: IssuesState, action: IssuesAction): IssuesState {
     
     case IssuesActionType.UPDATE_ISSUE:
       const { issueId, newStatus } = action;
+      // Find the original position of the issue before updating
       const originalIndex = state.issues.findIndex(
         (issue) => issue.id === issueId
       );
       const newIssues = [...state.issues];
       const updatedIssue = newIssues.find((issue) => issue.id === issueId);
+      
       if (updatedIssue) {
+        // Remove the issue from its current position
         newIssues.splice(newIssues.indexOf(updatedIssue), 1);
+        
         return {
           ...state,
+          // Add the updated issue to the beginning of the list
           issues: [{ ...updatedIssue, status: newStatus }, ...newIssues],
+          // Track this update for potential undo
           lastUpdatedIssues: [
             ...state.lastUpdatedIssues,
             {
@@ -70,6 +76,7 @@ function issuesReducer(state: IssuesState, action: IssuesAction): IssuesState {
     
     case IssuesActionType.REMOVE_LAST_UPDATED_ISSUE:
       const { issueId: tempIssueId } = action;
+      // Remove the undo tracking for a specific issue
       const newLastUpdatedIssues = state.lastUpdatedIssues.filter(
         (item) => item.originalIssue.id !== tempIssueId
       );
@@ -80,6 +87,7 @@ function issuesReducer(state: IssuesState, action: IssuesAction): IssuesState {
     
     case IssuesActionType.UNDO_ISSUE:
       const { issueId: undoIssueId } = action;
+      // Find the original state of the issue to undo
       const tempIssue = state.lastUpdatedIssues.find(
         (item) => item.originalIssue.id === undoIssueId
       );
@@ -87,6 +95,7 @@ function issuesReducer(state: IssuesState, action: IssuesAction): IssuesState {
 
       const newUndoneIssues = [...state.issues];
 
+      // Remove the issue from its current position
       const currentIndex = newUndoneIssues.findIndex(
         (issue) => issue.id === undoIssueId
       );
@@ -95,6 +104,7 @@ function issuesReducer(state: IssuesState, action: IssuesAction): IssuesState {
         newUndoneIssues.splice(currentIndex, 1);
       }
 
+      // Restore the issue to its original position and state
       newUndoneIssues.splice(tempIssue.originalIndex, 0, {
         ...tempIssue.originalIssue,
       });
@@ -123,6 +133,12 @@ export const IssuesProvider = ({ children }: { children: ReactNode }) => {
   );
 };
 
+/**
+ * Hook to access the issues state from context
+ * 
+ * @returns Current issues state
+ * @throws Error if used outside of IssuesProvider
+ */
 export function useIssuesState() {
   const context = useContext(IssuesStateContext);
   if (context === undefined) {
@@ -131,6 +147,12 @@ export function useIssuesState() {
   return context;
 }
 
+/**
+ * Hook to access the issues dispatch function from context
+ * 
+ * @returns Dispatch function for updating issues state
+ * @throws Error if used outside of IssuesProvider
+ */
 export function useIssuesDispatch() {
   const context = useContext(IssuesDispatchContext);
   if (context === undefined) {

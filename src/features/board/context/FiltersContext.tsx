@@ -69,6 +69,12 @@ export const FiltersProvider = ({ children }: { children: ReactNode }) => {
   );
 };
 
+/**
+ * Hook to access the filters state from context
+ * 
+ * @returns Current filters state
+ * @throws Error if used outside of FiltersProvider
+ */
 export function useFiltersState() {
   const context = useContext(FiltersStateContext);
   if (context === undefined) {
@@ -77,6 +83,12 @@ export function useFiltersState() {
   return context;
 }
 
+/**
+ * Hook to access the filters dispatch function from context
+ * 
+ * @returns Dispatch function for updating filters state
+ * @throws Error if used outside of FiltersProvider
+ */
 export function useFiltersDispatch() {
   const context = useContext(FiltersDispatchContext);
   if (context === undefined) {
