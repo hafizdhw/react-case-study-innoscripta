@@ -47,15 +47,7 @@ export const ActionButton = ({
     return [];
   }, [status]);
 
-  useEffect(() => {
-    return () => {
-      dispatch({
-        type: IssuesActionType.REMOVE_LAST_UPDATED_ISSUE,
-        issueId: issueId,
-      });
-      toast.dismissAll();
-    };
-  }, []);
+  
 
   const handleStatusChange = async (value: IssueStatus) => {
     previousStatus.current = status;

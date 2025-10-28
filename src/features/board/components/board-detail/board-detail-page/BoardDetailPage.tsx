@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./BoardDetailPage.css";
 import { DetailBody } from "../detail-body/DetailBody";
 import { ActionButton } from "../action-button/ActionButton";
@@ -6,11 +6,28 @@ import { DetailHeader } from "../detail-header/DetailHeader";
 import { useGetIssue } from "../../../hooks/useGetIssue";
 import { Text } from "../../../../../components/ui/text/Text";
 import { Skeleton } from "../../../../../components/ui/skeleton/Skeleton";
+import {
+  IssuesActionType,
+  useIssuesDispatch,
+} from "../../../context/IssuesContext";
+import { useToast } from "../../../../../components/ui/toaster/useToast";
 
 export const BoardDetailPage = ({ issueId }: { issueId: string }) => {
   const { issue, isLoading } = useGetIssue(issueId);
+  const dispatch = useIssuesDispatch();
+  const toast = useToast();
 
-  if (isLoading) {
+  useEffect(() => {
+    return () => {
+      dispatch({
+        type: IssuesActionType.REMOVE_LAST_UPDATED_ISSUE,
+        issueId: issueId,
+      });
+      toast.dismissAll();
+    };
+  }, []);
+
+  if (isLoading && !issue) {
     return (
       <div className="board-detail-page">
         <div className="board-detail-page__content">
