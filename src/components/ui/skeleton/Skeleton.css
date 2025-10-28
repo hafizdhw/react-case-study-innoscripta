@@ -1,0 +1,47 @@
+.skeleton {
+  background: linear-gradient(90deg, #f8f9fa 25%, #dee2e6 50%, #f8f9fa 75%);
+  background: linear-gradient(90deg, var(--color-surface, #f8f9fa) 25%, var(--color-border, #dee2e6) 50%, var(--color-surface, #f8f9fa) 75%);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s infinite;
+  border-radius: var(--radius-sm, 0.25rem);
+  display: block;
+  min-height: 1rem;
+}
+
+.skeleton--text {
+  height: 1em;
+  border-radius: var(--radius-sm, 0.25rem);
+}
+
+.skeleton--rectangular {
+  border-radius: var(--radius-sm, 0.25rem);
+}
+
+.skeleton--circular {
+  border-radius: 50%;
+}
+
+.skeleton--sm {
+  height: 0.75rem;
+}
+
+.skeleton--md {
+  height: 1rem;
+}
+
+.skeleton--lg {
+  height: 1.5rem;
+}
+
+.skeleton--xl {
+  height: 2rem;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}

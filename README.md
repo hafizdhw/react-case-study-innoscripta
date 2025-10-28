@@ -32,6 +32,20 @@ Build a **React application** that lets users:
 
 ---
 
+## 📋 Requirements Status
+
+| Requirement | Status | Notes |
+|-------------|--------|-------|
+| **Board View** | ✅ Complete | 3 columns with drag & drop, optimistic updates, undo functionality |
+| **Search, Filter & Sort** | ✅ Complete | Live search, filtering by assignee/severity, priority score sorting |
+| **Recently Accessed Sidebar** | ✅ Complete | Tracks last 5 visited issues, stored in localStorage |
+| **Issue Detail Page** | ✅ Complete | Full issue info with "Mark as Resolved" action |
+| **Role-Based Access** | ✅ Complete | Admin/contributor permissions implemented |
+| **Polling / Real-Time** | ✅ Complete | 10-second polling with sync status display |
+| **Pagination/Virtual Scroll** | ⏳ Pending | Bonus feature - not implemented yet |
+
+---
+
 ## ✅ Functional Requirements
 
 ### 1. **Board View (`/board`)**
@@ -98,6 +112,48 @@ You're expected to build the real functionality and logic on top of this foundat
 
 ---
 
+## 🎥 Demo Video
+
+*This section will be used for demo testing and showcasing the application functionality.*
+
+### Video Recording Guidelines:
+- **Duration**: 3-5 minutes maximum
+- **Content**: Walk through all major features
+- **Areas to Cover**:
+  - Board view with drag & drop functionality
+  - Search and filtering capabilities
+  - Issue detail page and resolution workflow
+  - Role-based access control demonstration
+  - Recently accessed issues sidebar
+  - Undo functionality and real-time updates
+
+### Demo Script:
+1. **Introduction** (30 seconds)
+   - Brief overview of the application
+   - Current user role and permissions
+
+2. **Board View** (1 minute)
+   - Show the three columns (Backlog, In Progress, Done)
+   - Demonstrate drag & drop between columns
+   - Show optimistic updates and undo functionality
+
+3. **Search & Filtering** (1 minute)
+   - Live search by title/tags
+   - Filter by assignee and severity
+   - Show priority-based sorting
+
+4. **Issue Details** (1 minute)
+   - Navigate to issue detail page
+   - Show "Mark as Resolved" functionality
+   - Demonstrate role-based access restrictions
+
+5. **Additional Features** (1 minute)
+   - Recently accessed issues sidebar
+   - Real-time polling indicator
+   - Settings page (if applicable)
+
+---
+
 ## ✨ Bonus (If You Have Time)
 
 - Pagination or virtual scroll
@@ -125,23 +181,6 @@ You're expected to build the real functionality and logic on top of this foundat
 ## ⏱️ Time Limit
 
 This challenge is designed for **~90 minutes**. If you need a bit more time for polish, that’s okay — just let us know.
-
----
-
-## 🔒 Dependency Rules
-
-You may only use the dependencies already included in the project.
-
-> ❗ No additional libraries or external packages are allowed — **except** for state management libraries such as:
-> - [Zustand](https://github.com/pmndrs/zustand)
-> - [Jotai](https://github.com/pmndrs/jotai)
-> - [Recoil](https://recoiljs.org/)
-> - or similar minimal state libraries
-
-Please do **not** add other UI kits, form libraries, animation frameworks, etc.
-
-The goal is to evaluate your architecture, state design, and React fundamentals — not your ability to wire up third-party tools.
-
 
 ---
 
