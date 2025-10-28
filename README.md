@@ -57,7 +57,7 @@ Build a **React application** that lets users:
    - Demonstrate drag & drop between columns
    - Show optimistic updates and undo functionality
 
-   https://www.loom.com/share/df25011dddb347b98d27135733c3c674
+   https://www.loom.com/share/5959d96aa7e94958a45899965737b44f
 
 3. **Search & Filtering** 
    - Live search by title/tags
