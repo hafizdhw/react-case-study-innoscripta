@@ -1,7 +1,6 @@
 import React from "react";
 import "./BoardLayout.css";
 import { Text } from "../../../../../components/ui/text/Text";
-import { Button } from "../../../../../components/ui/button";
 import {
   BoardLayoutProvider,
   useBoardLayout,
@@ -21,21 +20,59 @@ const LayoutLeftSidebar = ({ children }: LayoutCompoundProps) => {
 
   return (
     <div
-      className="board-layout__left-sidebar"
+      className={`board-layout__left-sidebar ${
+        isExpanded
+          ? "board-layout__left-sidebar--expanded"
+          : "board-layout__left-sidebar--collapsed"
+      }`}
       style={{
-        width: isExpanded ? "18rem" : "3.5rem",
-        transition: "width 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
+        minWidth: isExpanded ? "22rem" : "4rem",
+        transition: "width 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
       }}
     >
-      <Button
-        onClick={toggleSidebar}
-        variant="secondary"
-        size="sm"
-        className="board-layout__toggle"
+      <div className="board-layout__sidebar-header">
+        <button
+          onClick={toggleSidebar}
+          className="board-layout__toggle"
+          aria-label={isExpanded ? "Collapse sidebar" : "Expand sidebar"}
+        >
+          <div className="board-layout__toggle-icon">
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 16 16"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              {isExpanded ? (
+                <path
+                  d="M10 4L6 8L10 12"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              ) : (
+                <path
+                  d="M6 4L10 8L6 12"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              )}
+            </svg>
+          </div>
+        </button>
+      </div>
+      <div
+        className="board-layout__sidebar-content"
+        style={{
+          padding: isExpanded ? "var(--spacing-md)" : "var(--spacing-xs)",
+        }}
       >
-        {isExpanded ? "▼" : "▶"}
-      </Button>
-      {children}
+        {children}
+      </div>
     </div>
   );
 };
