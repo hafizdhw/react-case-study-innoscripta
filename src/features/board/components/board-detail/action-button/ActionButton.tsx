@@ -47,8 +47,6 @@ export const ActionButton = ({
     return [];
   }, [status]);
 
-  
-
   const handleStatusChange = async (value: IssueStatus) => {
     previousStatus.current = status;
     setStatus(value);
@@ -109,26 +107,6 @@ export const ActionButton = ({
             Actions
           </Text>
         </div>
-        {user?.role !== "admin" && (
-          <div className="action-button__permission-hint">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path
-                d="M8 0C3.58172 0 0 3.58172 0 8C0 12.4183 3.58172 16 8 16C12.4183 16 16 12.4183 16 8C16 3.58172 12.4183 0 8 0ZM8 14C4.68629 14 2 11.3137 2 8C2 4.68629 4.68629 2 8 2C11.3137 2 14 4.68629 14 8C14 11.3137 11.3137 14 8 14Z"
-                fill="currentColor"
-              />
-              <path
-                d="M8 4V8L11 11"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-            <Text variant="span" size="xs" className="action-button__hint-text">
-              Admin only
-            </Text>
-          </div>
-        )}
       </div>
 
       <div className="action-button__section">
