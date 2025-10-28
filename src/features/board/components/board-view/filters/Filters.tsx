@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import { Select } from "../../../../../components/ui/select/Select";
-import { Text } from "../../../../../components/ui/text/Text";
-import { Button } from "../../../../../components/ui/button";
 import { useGetFiltersOptions } from "../../../hooks/useGetFIltersOptions";
 import { useDebounce } from "../../../../../hooks/useDebounce";
 import {
@@ -54,38 +52,17 @@ export const Filters = () => {
 
   return (
     <div className="filters">
-      <div className="filters__header">
-        <Text variant="h3" size="lg">
-          Filter
-        </Text>
-        {shouldShowClearFilters && (
-          <Button
-            className="filters__clear-btn"
-            onClick={handleClearFilters}
-            type="button"
-            variant="secondary"
-            size="sm"
-          >
-            Clear filters
-          </Button>
-        )}
-      </div>
       <div className="filters__fields">
-        <div className="filters__item-field">
-          <Text variant="label" size="sm">
-            Search
-          </Text>
+        <div className="filters__item">
           <TextInput
             value={searchValue}
             onChange={(e) => setSearchValue(e.target.value)}
             placeholder="Search by title or tags"
+            className="filters__input"
           />
         </div>
 
-        <div className="filters__item-field">
-          <Text variant="label" size="sm">
-            Assignee
-          </Text>
+        <div className="filters__item">
           <Select
             options={assigneeOptions}
             value={assignee}
@@ -94,10 +71,7 @@ export const Filters = () => {
           />
         </div>
 
-        <div className="filters__item-field">
-          <Text variant="label" size="sm">
-            Severity
-          </Text>
+        <div className="filters__item">
           <Select
             options={severityOptions}
             value={severity}
@@ -105,6 +79,34 @@ export const Filters = () => {
             placeholder="Select a severity"
           />
         </div>
+        
+        {shouldShowClearFilters && (
+          <div className="filters__clear-container">
+            <button
+              className="filters__clear-btn"
+              onClick={handleClearFilters}
+              type="button"
+              aria-label="Clear all filters"
+            >
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 16 16"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M12 4L4 12M4 4L12 12"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+              Clear
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
