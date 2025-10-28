@@ -1,5 +1,6 @@
 import React from "react";
 import { Text } from "../../../../../components/ui/text/Text";
+import { PriorityBadge } from "../../../../../components/ui/priority-badge/PriorityBadge";
 import "./IssuesHistory.css";
 import { useGetRecentVisttedIssues } from "../../../hooks/useGetRecentVisttedIssues";
 import { useBoardLayout } from "../../../context/BoardLayoutContext";
@@ -15,24 +16,35 @@ export const IssuesHistory = () => {
   return (
     <div className="issues-history">
       <div className="issues-history__header">
-        <Text variant="h3" size="md">
-          <strong>{isExpanded ? "Recent Visited Issues" : ""}</strong>
+        <Text variant="h3" size="lg" weight="semibold" className="issues-history__title">
+          Recent Visited Issues
         </Text>
+        <div className="issues-history__count">
+          <Text variant="span" size="sm" weight="medium">
+            {recentVisttedIssues.length} {recentVisttedIssues.length === 1 ? 'issue' : 'issues'}
+          </Text>
+        </div>
       </div>
+      
       {recentVisttedIssues.length === 0 ? (
-        <div>No issues found.</div>
+        <div className="issues-history__empty">
+          <div className="issues-history__empty-icon">📋</div>
+          <Text variant="paragraph" size="md" weight="medium" className="issues-history__empty-title">
+            No recent issues
+          </Text>
+          <Text variant="paragraph" size="sm" className="issues-history__empty-description">
+            Issues you visit will appear here for quick access
+          </Text>
+        </div>
       ) : (
         <div className="issues-history__list">
           {recentVisttedIssues.map((issue) => (
-            <Text
-              key={issue.id}
-              variant="paragraph"
-              size="sm"
-              className="issues-history__item"
-            >
-              <strong>{issue.title}</strong> &mdash; {issue.status} (Priority:{" "}
-              {issue.priority})
-            </Text>
+            <div key={issue.id} className="issues-history__item">
+              <Text variant="paragraph" size="md" weight="semibold" className="issues-history__item-title">
+                {issue.title}
+              </Text>
+              <PriorityBadge priority={issue.priority} />
+            </div>
           ))}
         </div>
       )}

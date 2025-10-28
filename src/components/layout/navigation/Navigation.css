@@ -53,8 +53,8 @@
 .navigation__user-info {
     display: flex;
     align-items: center;
-    gap: var(--spacing-md);
-    padding: var(--spacing-xs) var(--spacing-sm);
+    gap: var(--spacing-lg);
+    padding: var(--spacing-xs) var(--spacing-md);
     border-radius: var(--radius-lg);
     background: var(--color-surface);
     border: 1px solid var(--color-border);
