@@ -9,7 +9,7 @@ import { SyncStatus } from "../features/board/components/board-view/sync-status/
 export const BoardPage = () => {
   return (
     <FiltersProvider>
-      <Layout>
+      <Layout title="Innoscripta Board">
         <Layout.LeftSidebar>
           <SyncStatus />
           <IssuesHistory />
