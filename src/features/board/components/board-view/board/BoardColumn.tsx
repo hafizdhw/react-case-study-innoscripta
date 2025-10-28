@@ -70,6 +70,8 @@ export const BoardColumn = ({ status }: BoardColumnProps) => {
             status={issue.status as IssueStatus}
             priority={issue.priority as IssuePriority}
             assignee={issue.assignee}
+            severity={issue.severity}
+            tags={issue.tags}
           />
         ))}
 

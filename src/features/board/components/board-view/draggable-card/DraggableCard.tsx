@@ -18,6 +18,8 @@ const DraggableCard = ({
   assignee,
   onClick,
   status,
+  severity,
+  tags,
 }: DraggableCardProps) => {
   // Set up drag-and-drop functionality
   const { attributes, listeners, setNodeRef, transform, isDragging, active } =
@@ -49,7 +51,7 @@ const DraggableCard = ({
       ${isOtherCardDragging ? "draggable-card--inactive" : ""}`}
       onClick={onClick}
     >
-      <Card title={title} priority={priority} assignee={assignee} />
+      <Card title={title} priority={priority} assignee={assignee} severity={severity} tags={tags} />
     </div>
   );
 };
