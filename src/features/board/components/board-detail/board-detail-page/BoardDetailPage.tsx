@@ -4,16 +4,9 @@ import { DetailBody } from "../detail-body/DetailBody";
 import { ActionButton } from "../action-button/ActionButton";
 import { DetailHeader } from "../detail-header/DetailHeader";
 import { useGetIssue } from "../../../hooks/useGetIssue";
-import { useNavigate } from "react-router-dom";
-import { Button } from "../../../../../components/ui/button";
 
 export const BoardDetailPage = ({ issueId }: { issueId: string }) => {
   const { issue, isLoading } = useGetIssue(issueId);
-  const navigate = useNavigate();
-
-  const handleBack = () => {
-    navigate(-1);
-  };
 
   if (isLoading) {
     return <div>Loading...</div>;

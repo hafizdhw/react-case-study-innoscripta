@@ -7,7 +7,7 @@ import "./DetailHeader.css";
 export const DetailHeader = ({ title }: { title: Issue["title"] }) => {
   return (
     <div className="detail-header">
-      <Text variant="h1" size="3xl">
+      <Text variant="h1" size="3xl" weight="semibold">
         {title}
       </Text>
     </div>
