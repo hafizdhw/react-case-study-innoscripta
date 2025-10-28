@@ -46,6 +46,41 @@ Build a **React application** that lets users:
 | **Dark Mode Toggle** | ✅ Complete | Theme switching functionality implemented |
 | **Unit Tests** | ✅ Complete | Tests for sorting algorithm and critical logic |
 
+
+---
+
+## 🎥 Demo Video
+
+*This section will be used for demo testing and showcasing the application functionality.*
+1. **Board View** 
+   - Show the three columns (Backlog, In Progress, Done)
+   - Demonstrate drag & drop between columns
+   - Show optimistic updates and undo functionality
+
+   https://www.loom.com/share/df25011dddb347b98d27135733c3c674
+
+3. **Search & Filtering** 
+   - Live search by title/tags
+   - Filter by assignee and severity
+   - Show priority-based sorting
+
+   https://www.loom.com/share/4cc932a60c1d4f9689effaf2da50733a
+
+4. **Issue Details** 
+   - Navigate to issue detail page
+   - Show "Mark as Resolved" functionality
+   - Demonstrate role-based access restrictions
+
+   https://www.loom.com/share/b0b9c7ba0d9c4a808c97d46b6dc0ffbe
+
+5. **Additional Features** 
+   - Recently accessed issues sidebar
+   - Real-time polling indicator
+   - Settings page (if applicable)
+
+   https://www.loom.com/share/6e55f4b117ed4c1886b0dc08bcf9106c
+
+
 ---
 
 ## ✅ Functional Requirements
@@ -111,48 +146,6 @@ This repo includes:
 - TypeScript types in `src/types.ts`
 
 You're expected to build the real functionality and logic on top of this foundation.
-
----
-
-## 🎥 Demo Video
-
-*This section will be used for demo testing and showcasing the application functionality.*
-
-### Video Recording Guidelines:
-- **Duration**: 3-5 minutes maximum
-- **Content**: Walk through all major features
-- **Areas to Cover**:
-  - Board view with drag & drop functionality
-  - Search and filtering capabilities
-  - Issue detail page and resolution workflow
-  - Role-based access control demonstration
-  - Recently accessed issues sidebar
-  - Undo functionality and real-time updates
-
-### Demo Script:
-1. **Introduction** (30 seconds)
-   - Brief overview of the application
-   - Current user role and permissions
-
-2. **Board View** (1 minute)
-   - Show the three columns (Backlog, In Progress, Done)
-   - Demonstrate drag & drop between columns
-   - Show optimistic updates and undo functionality
-
-3. **Search & Filtering** (1 minute)
-   - Live search by title/tags
-   - Filter by assignee and severity
-   - Show priority-based sorting
-
-4. **Issue Details** (1 minute)
-   - Navigate to issue detail page
-   - Show "Mark as Resolved" functionality
-   - Demonstrate role-based access restrictions
-
-5. **Additional Features** (1 minute)
-   - Recently accessed issues sidebar
-   - Real-time polling indicator
-   - Settings page (if applicable)
 
 ---
 
