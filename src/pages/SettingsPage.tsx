@@ -1,5 +1,6 @@
-import React from 'react';
+import React from "react";
+import { SettingsPageView } from "../features/settings/components/settings-page-view/SettingsPageView";
 
 export const SettingsPage = () => {
-    return <div style={{ padding: '1rem' }}>TODO: Polling interval settings</div>;
+  return <SettingsPageView />;
 };

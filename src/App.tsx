@@ -14,6 +14,7 @@ import { ProtectedRoute } from "./components/ProtectedRoute";
 import { ToastProvider } from "./components/ui/toaster/ToastContext";
 import { AuthProvider } from "./features/login/context/AuthContext";
 import { IssuesProvider } from "./features/board/context/IssuesContext";
+import { PollingSettingsProvider } from "./features/settings/context/PollingSettingsContext";
 import { IssuesLoader } from "./features/board/components/board-view/loader/IssuesLoader";
 import { ToastRenderer } from "./components/ui/toaster/ToastRenderer";
 
@@ -22,8 +23,9 @@ export const App = () => {
     <Router>
       <ToastProvider>
         <AuthProvider>
-          <IssuesProvider>
-            <IssuesLoader />
+          <PollingSettingsProvider>
+            <IssuesProvider>
+              <IssuesLoader />
             <Routes>
               <Route path="/login" element={<LoginPage />} />
               <Route
@@ -56,7 +58,8 @@ export const App = () => {
               <Route path="*" element={<Navigate to="/login" />} />
             </Routes>
             <ToastRenderer />
-          </IssuesProvider>
+            </IssuesProvider>
+          </PollingSettingsProvider>
         </AuthProvider>
       </ToastProvider>
     </Router>

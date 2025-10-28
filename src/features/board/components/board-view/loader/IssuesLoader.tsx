@@ -4,6 +4,7 @@ import {
   IssuesActionType,
   useIssuesDispatch,
 } from "../../../context/IssuesContext";
+import { usePollingSettings } from "../../../../settings/context/PollingSettingsContext";
 
 /**
  * IssueLoader component that handles initial data loading and periodic updates
@@ -19,6 +20,8 @@ import {
  */
 export const IssuesLoader = () => {
   const dispatch = useIssuesDispatch();
+  // Get the polling interval from the PollingSettingsContext
+  const { pollingInterval } = usePollingSettings();
 
   useEffect(() => {
     /**
@@ -37,7 +40,11 @@ export const IssuesLoader = () => {
         });
       });
     };
+    // Initial data fetch
+    fetchAndDispatch();
+  }, []);
 
+  useEffect(() => {
     const simulateRealTimeUpdates = () => {
       dispatch({
         type: IssuesActionType.START_LOAD_ISSUES,
@@ -51,17 +58,20 @@ export const IssuesLoader = () => {
       });
     };
 
-    // Initial data fetch
-    fetchAndDispatch();
+    // Set up periodic refresh based on polling interval setting
+    let intervalId: NodeJS.Timeout | null = null;
 
-    // Set up periodic refresh every 10 seconds
-    const intervalId = setInterval(simulateRealTimeUpdates, 10000);
+    if (pollingInterval > 0) {
+      intervalId = setInterval(simulateRealTimeUpdates, pollingInterval * 1000);
+    }
 
     // Cleanup function to prevent memory leaks
     return () => {
-      clearInterval(intervalId);
+      if (intervalId) {
+        clearInterval(intervalId);
+      }
     };
-  }, []);
+  }, [pollingInterval, dispatch]);
 
   // This component doesn't render anything - it's purely for data loading
   return null;

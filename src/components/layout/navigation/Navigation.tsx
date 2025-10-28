@@ -6,6 +6,7 @@ import {
 } from "../../../features/login/context/AuthContext";
 import { Button } from "../../ui/button";
 import { useToast } from "../../ui/toaster/useToast";
+import "./Navigation.css";
 
 export const Navigation = () => {
   const { logout } = useAuth();
@@ -20,24 +21,18 @@ export const Navigation = () => {
   };
 
   return (
-    <nav
-      style={{
-        padding: "1rem",
-        background: "#eee",
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-      }}
-    >
-      <div>
-        <Link to="/board" style={{ marginRight: "1rem" }}>
+    <nav className="navigation">
+      <div className="navigation__links">
+        <Link to="/board" className="navigation__link">
           Board
         </Link>
-        <Link to="/settings">Settings</Link>
+        <Link to="/settings" className="navigation__link">
+          Settings
+        </Link>
       </div>
 
-      <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
-        <span style={{ fontSize: "0.9rem", color: "#666" }}>
+      <div className="navigation__user-info">
+        <span className="navigation__username">
           {user?.username} ({user?.role})
         </span>
         <Button onClick={handleLogout} variant="danger" size="sm">

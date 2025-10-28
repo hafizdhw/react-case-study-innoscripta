@@ -1,0 +1,32 @@
+.navigation {
+  padding: 1rem;
+  background: #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navigation__links {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.navigation__link {
+  margin-right: 1rem;
+}
+
+.navigation__link:last-child {
+  margin-right: 0;
+}
+
+.navigation__user-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.navigation__username {
+  font-size: 0.9rem;
+  color: #666;
+}

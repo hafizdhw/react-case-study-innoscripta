@@ -1,5 +1,5 @@
 import React from "react";
-import { Layout } from "../features/board/components/board-view/base-layout/BaseLayout";
+import { Layout } from "../features/board/components/board-view/board-layout/BoardLayout";
 import { Board } from "../features/board/components/board-view/board/Board";
 import { Filters } from "../features/board/components/board-view/filters/Filters";
 import { FiltersProvider } from "../features/board/context/FiltersContext";
