@@ -13,41 +13,68 @@ export const SyncStatus = () => {
   const { isSyncing, lastUpdatedAt } = useIssuesState();
   const { isExpanded } = useBoardLayout();
 
+  const getStatusColor = () => {
+    if (isSyncing) return "var(--color-warning)";
+    return "var(--color-success)";
+  };
+
+  const getStatusText = () => {
+    if (isSyncing) return "Syncing...";
+    return "Synced";
+  };
+
+  const formatLastUpdated = () => {
+    if (!lastUpdatedAt) return "Never";
+    
+    const updated = new Date(lastUpdatedAt);
+    return updated.toLocaleString([], {
+      month: "short",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+    });
+  };
+
   if (!isExpanded) {
     return (
       <div className="sync-status__icon-only">
-        <SyncIcon isSyncing={isSyncing} />
+        <div className="sync-status__compact">
+          <SyncIcon isSyncing={isSyncing} />
+          <div 
+            className="sync-status__indicator" 
+            style={{ backgroundColor: getStatusColor() }}
+          />
+        </div>
       </div>
     );
   }
 
   return (
     <div className="sync-status">
-      <span className="sync-status__icon">
-        <SyncIcon isSyncing={isSyncing} />
-        {isSyncing && (
-          <Text variant="span" size="sm" className="sync-status__text">
-            Syncing...
+      <div className="sync-status__content">
+        <div className="sync-status__status-group">
+          <div className="sync-status__icon-container">
+            <SyncIcon isSyncing={isSyncing} />
+            <div 
+              className="sync-status__status-indicator" 
+              style={{ backgroundColor: getStatusColor() }}
+            />
+          </div>
+          <Text variant="span" size="md" weight="semibold" className="sync-status__status">
+            {getStatusText()}
           </Text>
-        )}
-        {!isSyncing && (
-          <Text variant="span" size="sm" className="sync-status__text">
-            Synced
+        </div>
+        
+        <div className="sync-status__details">
+          <Text variant="span" size="xs" className="sync-status__detail-label">
+            Last updated
           </Text>
-        )}
-      </span>
-      <Text variant="span" size="sm" className="sync-status__text">
-        Last updated at:{" "}
-        {lastUpdatedAt
-          ? new Date(lastUpdatedAt).toLocaleString([], {
-              month: "short",
-              day: "numeric",
-              hour: "2-digit",
-              minute: "2-digit",
-              second: "2-digit",
-            })
-          : "-"}
-      </Text>
+          <Text variant="span" size="sm" weight="medium" className="sync-status__detail-value">
+            {formatLastUpdated()}
+          </Text>
+        </div>
+      </div>
     </div>
   );
 };
