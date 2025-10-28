@@ -20,21 +20,8 @@ const darkModeOptions = [
 
 export const SettingsPageView = () => {
   const { user } = useAuth();
-  const { pollingInterval, setPollingInterval, darkMode, setDarkMode } = useSettings();
-
-  // Check if user is admin
-  if (!user || user.role !== "admin") {
-    return (
-      <div className="settings-page">
-        <Text variant="h2" size="lg">
-          Access Denied
-        </Text>
-        <Text variant="paragraph" size="md" className="mt-2">
-          Only administrators can access settings.
-        </Text>
-      </div>
-    );
-  }
+  const { pollingInterval, setPollingInterval, darkMode, setDarkMode } =
+    useSettings();
 
   const handlePollingIntervalChange = (value: string) => {
     const interval = parseInt(value, 10);
@@ -69,8 +56,21 @@ export const SettingsPageView = () => {
             value={pollingInterval.toString()}
             onChange={handlePollingIntervalChange}
             placeholder="Select interval"
+            disabled={user?.role !== "admin"}
           />
         </div>
+        {pollingInterval === 0 && (
+          <Text variant="paragraph" size="sm" className="mt-2 text-red-500">
+            ⚠️ Data will not sync automatically. You may need to refresh the
+            page to see updates.
+          </Text>
+        )}
+        {user?.role !== "admin" && (
+          <Text variant="paragraph" size="sm" className="mt-2 text-red-500">
+            ⚠️ You are not authorized to change the polling interval.
+          </Text>
+        )}
+
         <div className="settings-page__controls">
           <Text variant="label" size="sm">
             Dark Mode:
@@ -82,13 +82,6 @@ export const SettingsPageView = () => {
             placeholder="Select dark mode"
           />
         </div>
-
-        {pollingInterval === 0 && (
-          <Text variant="paragraph" size="sm" className="mt-2 text-red-500">
-            ⚠️ Data will not sync automatically. You may need to refresh the
-            page to see updates.
-          </Text>
-        )}
       </div>
     </div>
   );

@@ -18,6 +18,12 @@ import { SettingsProvider } from "./features/settings/context/SettingsContext";
 import { IssuesLoader } from "./features/board/components/board-view/loader/IssuesLoader";
 import { ToastRenderer } from "./components/ui/toaster/ToastRenderer";
 
+const protectedRoutes = [
+  { path: "/board", element: <BoardPage /> },
+  { path: "/settings", element: <SettingsPage /> },
+  { path: "/issue/:id", element: <IssueDetailPage /> },
+];
+
 export const App = () => {
   return (
     <Router>
@@ -26,38 +32,23 @@ export const App = () => {
           <SettingsProvider>
             <IssuesProvider>
               <IssuesLoader />
-            <Routes>
-              <Route path="/login" element={<LoginPage />} />
-              <Route
-                path="/board"
-                element={
-                  <ProtectedRoute>
-                    <Navigation />
-                    <BoardPage />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/issue/:id"
-                element={
-                  <ProtectedRoute>
-                    <Navigation />
-                    <IssueDetailPage />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/settings"
-                element={
-                  <ProtectedRoute>
-                    <Navigation />
-                    <SettingsPage />
-                  </ProtectedRoute>
-                }
-              />
-              <Route path="*" element={<Navigate to="/login" />} />
-            </Routes>
-            <ToastRenderer />
+              <Routes>
+                <Route path="/login" element={<LoginPage />} />
+                {protectedRoutes.map((route) => (
+                  <Route
+                    key={route.path}
+                    path={route.path}
+                    element={
+                      <ProtectedRoute>
+                        <Navigation />
+                        {route.element}
+                      </ProtectedRoute>
+                    }
+                  />
+                ))}
+                <Route path="*" element={<Navigate to="/login" />} />
+              </Routes>
+              <ToastRenderer />
             </IssuesProvider>
           </SettingsProvider>
         </AuthProvider>
