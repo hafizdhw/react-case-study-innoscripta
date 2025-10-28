@@ -19,11 +19,6 @@ export const IssuesHistory = () => {
         <Text variant="h3" size="lg" weight="semibold" className="issues-history__title">
           Recent Visited Issues
         </Text>
-        <div className="issues-history__count">
-          <Text variant="span" size="sm" weight="medium">
-            {recentVisttedIssues.length} {recentVisttedIssues.length === 1 ? 'issue' : 'issues'}
-          </Text>
-        </div>
       </div>
       
       {recentVisttedIssues.length === 0 ? (
