@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import {
   useAuth,
   useGetCurrentUser,
@@ -12,6 +12,7 @@ export const Navigation = () => {
   const { logout } = useAuth();
   const user = useGetCurrentUser();
   const navigate = useNavigate();
+  const location = useLocation();
   const toast = useToast();
 
   const handleLogout = () => {
@@ -20,24 +21,35 @@ export const Navigation = () => {
     toast.show({ message: "Logged out successfully", type: "success" });
   };
 
+  const isActiveLink = (path: string) => {
+    return location.pathname === path;
+  };
+
   return (
     <nav className="navigation">
       <img src="/innoscripta-logo-blue.svg" alt="Innoscripta Logo" className="navigation__logo" />
       <div className="navigation__links">
-        <Link to="/board" className="navigation__link">
-          Board
+        <Link 
+          to="/board" 
+          className={`navigation__link ${isActiveLink('/board') ? 'active' : ''}`}
+        >
+          📋 Board
         </Link>
-        <Link to="/settings" className="navigation__link">
-          Settings
+        <Link 
+          to="/settings" 
+          className={`navigation__link ${isActiveLink('/settings') ? 'active' : ''}`}
+        >
+          ⚙️ Settings
         </Link>
       </div>
 
       <div className="navigation__user-info">
-        <span className="navigation__username">
-          {user?.username} ({user?.role})
-        </span>
+        <div className="navigation__username">
+          <span className="navigation__username__name">{user?.username}</span>
+          <span className="navigation__username__role">{user?.role}</span>
+        </div>
         <Button onClick={handleLogout} variant="danger" size="sm">
-          Logout
+          🚪 Logout
         </Button>
       </div>
     </nav>
