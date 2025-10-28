@@ -1,32 +1,38 @@
 .navigation {
-  padding: 1rem;
-  background: #eee;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+    padding: var(--spacing-lg);
+    background: var(--color-surface);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .navigation__links {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-lg);
 }
 
 .navigation__link {
-  margin-right: 1rem;
+    margin-right: var(--spacing-lg);
 }
 
 .navigation__link:last-child {
-  margin-right: 0;
+    margin-right: 0;
 }
 
 .navigation__user-info {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-lg);
 }
 
 .navigation__username {
-  font-size: 0.9rem;
-  color: #666;
+    font-size: var(--font-size-sm);
+    color: var(--color-text-light);
+}
+
+.navigation__logo {
+    height: 2.25rem;
+    margin-right: var(--spacing-xxl);
+    display: block;
 }

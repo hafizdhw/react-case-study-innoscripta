@@ -22,6 +22,7 @@ export const Navigation = () => {
 
   return (
     <nav className="navigation">
+      <img src="/innoscripta-logo-blue.svg" alt="Innoscripta Logo" className="navigation__logo" />
       <div className="navigation__links">
         <Link to="/board" className="navigation__link">
           Board

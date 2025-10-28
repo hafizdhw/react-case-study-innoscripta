@@ -87,6 +87,14 @@
   text-align: center;
 }
 
+.login-form__logo {
+  height: 4.0625rem;
+  /* 65px = 4.0625rem */
+  display: block;
+  margin: 0 auto var(--spacing-xl) auto;
+}
+
+
 /* Dark theme support */
 .dark-theme .login-form {
   background: var(--color-surface);

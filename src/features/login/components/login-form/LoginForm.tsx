@@ -52,6 +52,7 @@ export const LoginForm = () => {
   return (
     <div className="login-form">
       <div className="login-form__card">
+        <img src="/innoscripta-logo-blue.svg" alt="Innoscripta Logo" className="login-form__logo" />
         <Text variant="h1" size="3xl" className="login-form__title">
           Welcome Back
         </Text>
