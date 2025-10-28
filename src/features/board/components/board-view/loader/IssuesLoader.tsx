@@ -4,7 +4,7 @@ import {
   IssuesActionType,
   useIssuesDispatch,
 } from "../../../context/IssuesContext";
-import { usePollingSettings } from "../../../../settings/context/PollingSettingsContext";
+import { useSettings } from "../../../../settings/context/SettingsContext";
 
 /**
  * IssueLoader component that handles initial data loading and periodic updates
@@ -21,7 +21,7 @@ import { usePollingSettings } from "../../../../settings/context/PollingSettings
 export const IssuesLoader = () => {
   const dispatch = useIssuesDispatch();
   // Get the polling interval from the PollingSettingsContext
-  const { pollingInterval } = usePollingSettings();
+  const { pollingInterval } = useSettings();
 
   useEffect(() => {
     /**

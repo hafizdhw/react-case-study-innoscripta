@@ -14,7 +14,7 @@ import { ProtectedRoute } from "./components/ProtectedRoute";
 import { ToastProvider } from "./components/ui/toaster/ToastContext";
 import { AuthProvider } from "./features/login/context/AuthContext";
 import { IssuesProvider } from "./features/board/context/IssuesContext";
-import { PollingSettingsProvider } from "./features/settings/context/PollingSettingsContext";
+import { SettingsProvider } from "./features/settings/context/SettingsContext";
 import { IssuesLoader } from "./features/board/components/board-view/loader/IssuesLoader";
 import { ToastRenderer } from "./components/ui/toaster/ToastRenderer";
 
@@ -23,7 +23,7 @@ export const App = () => {
     <Router>
       <ToastProvider>
         <AuthProvider>
-          <PollingSettingsProvider>
+          <SettingsProvider>
             <IssuesProvider>
               <IssuesLoader />
             <Routes>
@@ -59,7 +59,7 @@ export const App = () => {
             </Routes>
             <ToastRenderer />
             </IssuesProvider>
-          </PollingSettingsProvider>
+          </SettingsProvider>
         </AuthProvider>
       </ToastProvider>
     </Router>

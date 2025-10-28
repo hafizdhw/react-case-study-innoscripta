@@ -67,8 +67,9 @@
   --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
-/* Dark theme variables - can be activated with a .dark-theme class */
-.dark-theme {
+/* Dark theme variables - can be activated with a .dark-theme or .dark-mode class */
+.dark-theme,
+.dark-mode {
   --color-background: #121212;
   --color-surface: #1e1e1e;
   --color-text: #ffffff;
