@@ -5,9 +5,12 @@ type TextVariant = "h1" | "h2" | "h3" | "paragraph" | "label" | "span";
 
 type TextSize = "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl";
 
+type TextWeight = "thin" | "light" | "normal" | "medium" | "semibold" | "bold" | "extrabold" | "black";
+
 interface TextProps {
   variant: TextVariant;
   size: TextSize;
+  weight?: TextWeight;
   children: React.ReactNode;
   className?: string;
 }
@@ -15,6 +18,7 @@ interface TextProps {
 export const Text = ({
   variant,
   size,
+  weight = "normal",
   children,
   className = "",
 }: TextProps) => {
@@ -31,8 +35,19 @@ export const Text = ({
     "4xl": "text-4xl",
   };
 
+  const weightClasses = {
+    thin: "font-thin",
+    light: "font-light",
+    normal: "font-normal",
+    medium: "font-medium",
+    semibold: "font-semibold",
+    bold: "font-bold",
+    extrabold: "font-extrabold",
+    black: "font-black",
+  };
+
   const combinedClasses =
-    `${baseClasses} ${sizeClasses[size]} ${className}`.trim();
+    `${baseClasses} ${sizeClasses[size]} ${weightClasses[weight]} ${className}`.trim();
 
   switch (variant) {
     case "h1":

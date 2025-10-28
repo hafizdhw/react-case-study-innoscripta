@@ -18,7 +18,3 @@
   flex-direction: row;
   gap: var(--spacing-lg);
 }
-
-.board-detail-page__back-button {
-  margin-bottom: var(--spacing-md);
-}

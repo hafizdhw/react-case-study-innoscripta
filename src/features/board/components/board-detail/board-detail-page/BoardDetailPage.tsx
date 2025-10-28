@@ -24,15 +24,6 @@ export const BoardDetailPage = ({ issueId }: { issueId: string }) => {
   return (
     <div className="board-detail-page">
       <div className="board-detail-page__content">
-        <Button
-          type="button"
-          onClick={handleBack}
-          variant="secondary"
-          size="sm"
-          className="board-detail-page__back-button"
-        >
-          ← Back
-        </Button>
         <DetailHeader title={issue.title} />
         <div className="board-detail-page__main">
           <DetailBody

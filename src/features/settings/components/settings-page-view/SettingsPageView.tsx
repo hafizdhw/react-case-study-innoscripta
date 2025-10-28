@@ -38,7 +38,7 @@ export const SettingsPageView = () => {
 
   return (
     <div className="settings-page">
-      <Text variant="h2" size="lg">
+      <Text variant="h2" size="lg" weight="bold">
         Settings
       </Text>
 

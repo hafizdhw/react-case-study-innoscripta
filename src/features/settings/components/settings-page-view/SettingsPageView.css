@@ -1,13 +1,18 @@
 .settings-page {
-  padding: 1rem;
+    padding: var(--spacing-md);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
 }
 
 .settings-page__section {
-  margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
 }
 
 .settings-page__controls {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
 }
