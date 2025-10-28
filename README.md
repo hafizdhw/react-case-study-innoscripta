@@ -43,6 +43,8 @@ Build a **React application** that lets users:
 | **Role-Based Access** | ✅ Complete | Admin/contributor permissions implemented |
 | **Polling / Real-Time** | ✅ Complete | 10-second polling with sync status display |
 | **Pagination/Virtual Scroll** | ⏳ Pending | Bonus feature - not implemented yet |
+| **Dark Mode Toggle** | ✅ Complete | Theme switching functionality implemented |
+| **Unit Tests** | ✅ Complete | Tests for sorting algorithm and critical logic |
 
 ---
 
@@ -154,12 +156,12 @@ You're expected to build the real functionality and logic on top of this foundat
 
 ---
 
-## ✨ Bonus (If You Have Time)
+## ✨ Bonus Features
 
-- Pagination or virtual scroll
-- Custom hook for polling
-- Dark mode toggle
-- Unit test for sorting algorithm or update logic
+- ✅ Custom hook for polling
+- ✅ Dark mode toggle
+- ✅ Unit test for sorting algorithm or update logic
+- ⏳ Pagination or virtual scroll (pending)
 
 ---
 
